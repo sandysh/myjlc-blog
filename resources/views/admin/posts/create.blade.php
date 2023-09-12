@@ -1,0 +1,55 @@
+@extends('admin.layouts.app')
+
+@section('content')
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add New Category</h1>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">New</h6>
+    </div>  
+    <div class="card-body">
+        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">    
+                <label for="category_id">Category</label>
+                <select name="category_id" class="form-select form-control" aria-label="Default select example">
+                    <option selected disabled>Select a category</option>
+                    @foreach ($categories as $category )
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="title" type="text" class="form-control" id="title" aria-describedby="name">
+                @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            </div>
+
+            <div class="m-3 ">
+                <label for="body" class="form-label">Body</label>
+                <textarea class="form-control" name="body" id="" cols="30" rows="10"></textarea>
+                @error('body')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="m-3">
+                <label for="body" class="form-label">Featured_image</label><br>
+                <input type="file" name="feat_image">
+            </div>
+            
+            <div class="m-3 form-check">
+                <input name="active" type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+                <label class="form-check-label" for="exampleCheck1">Active</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+@endsection
