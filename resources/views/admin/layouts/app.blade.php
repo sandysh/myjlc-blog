@@ -19,14 +19,14 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.css') }}" rel="stylesheet">
-    @vite(['resources/js/app.js'])
+    {{-- @vite(['resources/js/app.js']) --}}
+    @stack('styles')
 </head>
 
-<body id="app">
-
+<body>
+    <div id="app">
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         @include('admin.shared.sidebar')
         <!-- End of Sidebar -->
@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-
+    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -104,11 +104,12 @@
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script> --}}
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
+    {{-- <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script> --}}
+    {{-- <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script> --}}
+    
     @stack('scripts')
 
 </body>

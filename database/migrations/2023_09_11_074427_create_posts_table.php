@@ -22,6 +22,9 @@ return new class extends Migration
             $table->longText('body');
             $table->string('featured_image');
             $table->boolean('active');
+            $table->bigInteger('hits')->default(0);
+            $table->string('reading_time')->nullable();
+            $table->bigInteger('shared')->default(0);
             $table->timestamps();
         });
     }

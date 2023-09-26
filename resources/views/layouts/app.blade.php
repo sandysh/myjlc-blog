@@ -36,7 +36,7 @@
     <!-- spacing css -->
     <link rel="stylesheet" type="text/css" href="/css/rs-spacing.css">
     <!-- style css -->
-    <link rel="stylesheet" type="text/css" href="https://myjavalearningcenter.com/public/style.css"> <!-- This stylesheet dynamically changed from style.less -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> <!-- This stylesheet dynamically changed from style.less -->
     <!-- responsive css -->
     <link rel="stylesheet" type="text/css" href="/css/responsive.css">
     <!--[if lt IE 9]>
@@ -45,74 +45,76 @@
 <![endif]-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    @stack('styles')
+    @vite(['resources/js/app.js'])
 </head>
 
 <body class="defult-home">
-
-    <!--Preloader area start here-->
-    <div id="loader" class="loader">
-        <div class="loader-container">
-            <div class='loader-icon'>
-                <img src="/images/loader-logo.png" alt="">
+    <div id="app">
+         <!--Preloader area start here-->
+         <div id="loader" class="loader">
+            <div class="loader-container">
+                <div class='loader-icon'>
+                    <img src="/images/loader-logo.png" alt="">
+                </div>
             </div>
         </div>
-    </div>
-    <!--Preloader area End here-->
+        <!--Preloader area End here-->
 
-    @include('shared.header')
+        @include('shared.header')
 
-    <!--Full width header End-->
-    <!-- Main content Start -->
-    <div class="main-content">
-        @yield('content')       
-    </div>
-    <!-- Main content End -->
+        <!--Full width header End-->
+        <!-- Main content Start -->
+        <div class="main-content">
+            @yield('content')       
+        </div>
+        <!-- Main content End -->
 
-    <!-- Footer Start -->
-    @include('shared.footer')
-    <!-- Footer End -->
+        <!-- Footer Start -->
+        @include('shared.footer')
+        <!-- Footer End -->
 
-    <!-- start scrollUp  -->
-    <div id="scrollUp" class="orange-color">
-        <i class="fa fa-angle-up"></i>
-    </div>
-    <!-- End scrollUp  -->
+        <!-- start scrollUp  -->
+        <div id="scrollUp" class="orange-color">
+            <i class="fa fa-angle-up"></i>
+        </div>
+        <!-- End scrollUp  -->
 
-    <!-- Search Modal Start -->
-    <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-        <button type="button" class="close" data-bs-dismiss="modal">
-            <span class="flaticon-cross"></span>
-        </button>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="search-block clearfix">
-                    <form>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Search Here..." type="text">
-                        </div>
-                    </form>
+        <!-- Search Modal Start -->
+        <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+            <button type="button" class="close" data-bs-dismiss="modal">
+                <span class="flaticon-cross"></span>
+            </button>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="search-block clearfix">
+                        <form>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Search Here..." type="text">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search Modal End -->
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">kgjkgdkugds</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Search Modal End -->
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">kgjkgdkugds</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- modernizr js -->
     <script src="/js/modernizr-2.8.3.min.js"></script>
     <!-- jquery latest version -->
@@ -158,6 +160,7 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>

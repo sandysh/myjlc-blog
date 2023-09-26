@@ -2,49 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\File\File;
-use Illuminate\Support\Str;
 use App\Models\Post;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use F9Web\ApiResponseHelpers;
+use App\Models\Comment;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\Tags\Tag;
 
 class PostController extends Controller
 {
     use ApiResponseHelpers;
-    
-    public function index()
-    {
-        return view('admin.posts.index');
-    }
 
-    public function all()
+    public function filter(Request $request)
     {
-        $posts = Post::with('category')
+        $posts = Post::with('category','user')
+                    ->when($request->tag, function(Builder $query) use ($request){
+                        $query->withAllTags($request->tag);
+                    })
+                    ->when($request->category, function(Builder $query) use ($request){
+                        $query->where('category_id', $request->category);
+                    })
                     ->whereActive(1)
                     ->select('*')
+                    ->withCount('comments as comments_count')
                     ->selectRaw('LEFT(`body`, 100) as `body`')
-                    ->selectRaw('LEFT(`title`, 50) as `title`')
                     ->paginate();
         return $this->respondWithSuccess($posts);
     }
 
-    public function create()
+    public function recent()
     {
-        $categories = Category::whereActive(1)->get();
-        return view('admin.posts.create',compact('categories'));
+        $posts = Post::with('category','user')
+                    ->whereActive(1)
+                    ->select('*')
+                    ->selectRaw('LEFT(`title`, 50) as `title`')
+                    ->selectRaw('LEFT(`body`, 1) as `body`')
+                    ->latest()
+                    ->take(5)
+                    ->get();
+        return $this->respondWithSuccess($posts);
     }
 
-    public function store(Request $request)
+    public function storePostComment(Post $post, Request $request)
     {
-        $imageName = Str::slug($request->title,'-').'.'.$request->file('feat_image')->getClientOriginalExtension();
-        $path = Storage::disk('public')->putFileAs('posts/featured_images',$request->feat_image, $imageName);
-        $request['featured_image'] = $path;
-        $request->active ? $request['active'] = 1 : $request['active'] = 0;
-        $request['user_id'] = auth()->id();
-        $request['slug'] = Str::slug($request->title,'-');
-        Post::create($request->all());
+        $request['post_id'] = $post->id;
+        if (auth()->check()){
+            $request['user_id'] = auth()->id();
+        }
+        Comment::create($request->all());
+        return $this->respondWithSuccess();
+    }
+
+    public function getPostComments(Post $post)
+    {
+        $comments = Comment::with('user')->where('post_id',$post->id)->latest()->get();
+        return $this->respondWithSuccess($comments);
+    }
+
+    public function getTags()
+    {
+        return $this->respondWithSuccess(Tag::all()->pluck('name'));
+    }
+
+    public function shared(Post $post)
+    {
+        $post->update(['shared' => $post->shared + 1]);
     }
 }

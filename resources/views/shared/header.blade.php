@@ -58,7 +58,7 @@
                               <nav class="rs-menu">
                                  <ul class="nav-menu">
                                     <li class="rs-mega-menu mega-rs current-menu-item"> 
-                                        <a href="https://myjavalearningcenter.com/">Home</a>
+                                        <a href="{{ route('home') }}">Home</a>
                                     </li>
                                      <!-- <li>
                                          <a href="#about">About</a>
@@ -80,12 +80,12 @@
                                      </li>
 
                                      <li>
-                                         <a href="#!">Blog</a>
+                                         <a href="{{ route('blog.index') }}">Blog</a>
                             
                                      </li>
 
                                      <li>
-                                         <a href="https://myjavalearningcenter.com/contact">Contact</a>
+                                         <a href="{{ route('contact') }}">Contact</a>
                                      </li>
                                  </ul> <!-- //.nav-menu -->
                               </nav>                                         

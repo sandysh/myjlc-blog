@@ -6,19 +6,25 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-
+import moment from "moment";
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
 const app = createApp({});
-
+app.provide("moment", moment);
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
 
 import PostsTableComponent from './components/PostsTableComponent.vue';
 app.component('posts-table-component', PostsTableComponent);
+
+import PostComponent from './components/PostComponent.vue';
+app.component('post-component',PostComponent);
+
+import CommentComponent from './components/Comment.vue';
+app.component('comment-component',CommentComponent);
 
 /**
  * The following block of code may be used to automatically register your

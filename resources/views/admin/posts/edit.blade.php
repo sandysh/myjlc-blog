@@ -39,21 +39,22 @@
         <h6 class="m-0 font-weight-bold text-primary">New</h6>
     </div>  
     <div class="card-body">
-        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('posts.update',[$post->id]) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="mb-3">    
                 <label for="category_id">Category</label>
                 <select name="category_id" class="form-select form-control" aria-label="Default select example">
                     <option selected disabled>Select a category</option>
                     @foreach ($categories as $category )
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option {{ $post->category_id === $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input name="title" type="text" class="form-control" id="title" aria-describedby="name">
+                <input name="title" type="text" class="form-control" id="title" aria-describedby="name" value="{{$post->title }}">
                 @error('title')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -61,20 +62,22 @@
 
             <div class=" ">
                 <label for="body" class="form-label">Body</label>
-               <textarea id="editor" name="body"></textarea>
+               <textarea id="editor" name="body" style="display: none">
+                {{$post->body }}
+               </textarea>
                 @error('body')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mt-3">
-              <label for="tags" class="form-label">Tags</label>
-              <input name="tags" id="tags" type="text" value="" data-role="tagsinput" />
+                <label for="tags" class="form-label">Tags</label>
+                <input name="tags" id="tags" type="text" value="{{ $post->tagString }}" data-role="tagsinput" />
             </div>
 
             <div class="mt-3">
                 <label for="readingTime" class="form-label">Reading Time</label>
-                <input name="reading_time" type="text" class="form-control" id="title" aria-describedby="reading_time" value="">
+                <input name="reading_time" type="text" class="form-control" id="title" aria-describedby="reading_time" value="{{$post->reading_time }}">
                 @error('title')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -82,11 +85,14 @@
 
             <div class="m-3">
                 <label for="body" class="form-label">Featured_image</label><br>
-                <input type="file" name="feat_image">
+                <input type="file" name="feat_image" id="feat-image">
+                <div>
+                    <img class="mt-2" style="width: 10rem" id="image-preview" src="{{ Storage::disk('public')->url($post->featured_image) }}" alt="your image" />
+                </div>
             </div>
             
             <div class="m-3 form-check">
-                <input name="active" type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+                <input name="active" type="checkbox" class="form-check-input" id="exampleCheck1" {{$post->active ? 'checked' : '' }}>
                 <label class="form-check-label" for="exampleCheck1">Active</label>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
@@ -141,7 +147,7 @@
                   'alignment', '|',
                   'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
                   'specialCharacters', 'horizontalLine', 'pageBreak', '|',
-                  'sourceEditing','accordion'
+                  'sourceEditing'
               ],
               shouldNotGroupWhenFull: true
           },
@@ -267,5 +273,13 @@
       .catch( error => {
           console.error( error );
       } );
+
+      let imgInp = document.getElementById('feat-image');
+      imgInp.onchange = evt => {
+      const [file] = imgInp.files
+      if (file) {
+        document.getElementById('image-preview').src = URL.createObjectURL(file)
+      }
+    }
 </script>
 @endpush
