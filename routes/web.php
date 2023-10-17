@@ -15,13 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::get('categories',[CategoryController::class,'index']);
 Route::post('posts/filter',[PostController::class,'filter']);
@@ -30,3 +26,5 @@ Route::get('post/{post}/comment',[PostController::class,'getPostComments']);
 Route::get('posts/tags',[PostController::class,'getTags']);
 Route::get('posts/recent',[PostController::class,'recent']);
 Route::get('post/{post}/shared',[PostController::class,'shared']);
+Route::get('courses',[\App\Http\Controllers\CourseController::class,'index'])->name('courses.index');
+Route::get('courses/{course}',[\App\Http\Controllers\CourseController::class,'show'])->name('courses.show');

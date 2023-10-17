@@ -1,3 +1,4 @@
+@inject('courses','App\Models\Course')
 <!--Full width header Start-->
 <div class="full-width-header header-style1 home8-style4">
     <!--Header Start-->
@@ -57,7 +58,7 @@
                               </div>
                               <nav class="rs-menu">
                                  <ul class="nav-menu">
-                                    <li class="rs-mega-menu mega-rs current-menu-item"> 
+                                    <li class="rs-mega-menu mega-rs current-menu-item">
                                         <a href="{{ route('home') }}">Home</a>
                                     </li>
                                      <!-- <li>
@@ -65,37 +66,31 @@
                                      </li> -->
 
                                      <li class="menu-item-has-children">
-                                         <a href="https://myjavalearningcenter.com/courses">Courses</a>
+                                         <a href="{{ route('courses.index') }}">Courses</a>
                                          <ul class="sub-menu">
-                                             <li><a href="https://myjavalearningcenter.com/courses/java-developer-course">Java Developer Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/java-full-stack-developer-course">Java Full Stack Developer Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/dsa-course">DSA Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/aws-course">AWS Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/devops-course">DevOps Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/kubernetes-course">Kubernetes Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/docker-course">Docker Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/core-java-course">Core Java Course</a> </li>
-                                             <li><a href="https://myjavalearningcenter.com/courses/web-development-course">Web Development Course</a> </li>
+                                             @foreach($courses->whereActive(1)->get(['title','slug']) as $course)
+                                                 <li><a href="{{ route('courses.show',[$course->slug]) }}">{{ $course->title }}</a> </li>
+                                             @endforeach
                                          </ul>
                                      </li>
 
                                      <li>
                                          <a href="{{ route('blog.index') }}">Blog</a>
-                            
+
                                      </li>
 
                                      <li>
                                          <a href="{{ route('contact') }}">Contact</a>
                                      </li>
                                  </ul> <!-- //.nav-menu -->
-                              </nav>                                         
-                            </div> <!-- //.main-menu -->                                
+                              </nav>
+                            </div> <!-- //.main-menu -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Menu End --> 
+        <!-- Menu End -->
 
         <!-- Canvas Menu start -->
         <nav class="right_menu_togle hidden-md">

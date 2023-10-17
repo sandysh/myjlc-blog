@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
+use App\Models\Notice;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $notices = Notice::whereActive(1)->latest()->limit(5)->get();
+        $banner = Banner::whereActive(1)->first();
+        return view('welcome', compact('notices','banner'));
     }
 }

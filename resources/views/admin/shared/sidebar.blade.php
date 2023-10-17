@@ -33,6 +33,20 @@
                     <span>Blog</span></a>
             </li>
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('courses.index') }}">
+                    <i class="fas fa-fw fa-th"></i>
+                    <span>Courses</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('courses.index') }}">
+                    <i class="fas fa-fw fa-th"></i>
+                    <span>Notices</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

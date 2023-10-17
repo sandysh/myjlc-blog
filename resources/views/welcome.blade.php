@@ -3,11 +3,11 @@
 @section('content')
 <div class="main-content">
     <!-- Banner Section Start -->
-    <div id="rs-banner" class="rs-banner style1">
+    <div id="rs-banner" class="rs-banner style1" style="background:url({{'storage/'.$banner->image}})">
         <div class="container">
             <div class="banner-content text-center">
-                <h1 class="banner-title capitalize wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms" style="color:white;">The Art of Practical Coding</h1>
-                <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms" style="color:white;">Learn Real-World Programming from the Industry's Best.</div>
+                <h1 class="banner-title capitalize wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms" style="color:white;">{{ $banner->title }}</h1>
+                <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms" style="color:white;">{{ $banner->tagline }}</div>
             </div>
         </div>
     </div>
@@ -21,32 +21,15 @@
                     <div class="notice-bord style1">
                         <h4 class="title">Notice Board</h4>
                         <ul>
-                            <li class="wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
-                                <div class="date"><span>27</span>Sept</div>
-                                <div class="desc">Attend Free Master Class on Java <br/> Timings : 11:00 AM to 1.00 P.M </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms">
-                                <div class="date"><span>28</span>Sept</div>
-                                <div class="desc">Attend Free Master Class on Java <br/> Timings : 11:00 AM to 1.00 P.M </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms">
-                                <div class="date"><span>29</span>Sept</div>
-                                <div class="desc">Attend Free Master Class on Java <br/> Timings : 11:00 AM to 1.00 P.M </div>
-                            </li>
-                             <!-- 
-                            <li class="wow fadeInUp" data-wow-delay="600ms" data-wow-duration="2000ms">
-                                <div class="date"><span>2</span>Oct</div>
-                                <div class="desc">Attend Free Master Class on Java <br/> Timings : 11:30 AM to 1.30 P.M </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-delay="700ms" data-wow-duration="2000ms">
-                                <div class="date"><span>3</span>Oct</div>
-                                <div class="desc">Attend Free Master Class on Java <br/> Timings : 11:30 AM to 1.30 P.M </div>
-                            </li>
-                            <li class="wow fadeInUp" data-wow-delay="700ms" data-wow-duration="2000ms">
-                                <div class="date"><span>4</span>Oct</div>
-                                <div class="desc">Attend Free Master Class on Java <br/> Timings : 11:30 AM to 1.30 P.M </div>
-                            </li>
-                              -->
+                            @foreach($notices as $notice)
+                                <li class="wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
+                                    <div class="date"><span>
+                                            {{ explode(',',\Carbon\Carbon::parse($notice->date)->toFormattedDateString())[0] }}</span></div>
+                                    <div class="desc">{{ $notice->title }} <br/> Timings : {{ $notice->from }} to
+                                    {{ $notice->to }}</div>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -57,7 +40,7 @@
                            <!-- <h2 class="title wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms">World Best Virtual Learning Network Educavo eLearning</h2> -->
                             <div class="desc wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms"> In today's rapidly evolving world of technology, staying ahead of the curve is not just an advantage – it's a necessity. Welcome to My Java Learning Center, where we are dedicated to equipping students and working professionals with the skills and knowledge needed to excel in the ever-changing realm of software development.
                             <br><br>We offer courses in Java, Data Structures and Algorithms, Design Patterns and other latest technologies such as Cloud Computing, DevOps for students who want to learn new technologies or working professionals who want to upgrade their technology skills. Our courses are designed and delivered via Instructor-Led live online classes to help you upgrade your skills and choose the right career in technology.
-                            <!-- 
+                            <!--
                             <br><br><b>Our Mission</b>
                             <br><br>Our mission is simple: To provide Industry-Focused training to students and working professionals
                             -->
@@ -84,7 +67,7 @@
                     <div class="btn-part text-end sm-text-start">
                         <a href="/courses" class="readon">View All Courses</a>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
@@ -94,7 +77,7 @@
                         </div>
                         <div class="content-part">
                             <ul class="meta-part">
-                                        
+
                                 <li><span class="price"><i class="fa fa-inr"></i>18,000 + GST</span></li>
                                 <li><a class="categorie" href="#">Job Oriented</a></li>
                             </ul>
@@ -103,7 +86,7 @@
                                 <div class="info-meta">
                                     <ul>
                                         <li class="user"><i class="fa fa-user"></i> 235</li>
-                                                
+
                                     </ul>
                                 </div>
                                 <div class="btn-part">
@@ -128,7 +111,7 @@
                                 <div class="info-meta">
                                     <ul>
                                         <li class="user"><i class="fa fa-user"></i> 245</li>
-                                                
+
                                     </ul>
                                 </div>
                                 <div class="btn-part">
@@ -153,7 +136,7 @@
                                 <div class="info-meta">
                                     <ul>
                                         <li class="user"><i class="fa fa-user"></i> 159 </li>
-                                                
+
                                     </ul>
                                 </div>
                                 <div class="btn-part">
@@ -178,7 +161,7 @@
                                 <div class="info-meta">
                                     <ul>
                                         <li class="user"><i class="fa fa-user"></i> 145 </li>
-                                                
+
                                     </ul>
                                 </div>
                                 <div class="btn-part">
@@ -203,7 +186,7 @@
                                 <div class="info-meta">
                                     <ul>
                                         <li class="user"><i class="fa fa-user"></i> 194 </li>
-                                                
+
                                     </ul>
                                 </div>
                                 <div class="btn-part">
@@ -228,7 +211,7 @@
                                 <div class="info-meta">
                                     <ul>
                                         <li class="user"><i class="fa fa-user"></i> 194 </li>
-                                                
+
                                     </ul>
                                 </div>
                                 <div class="btn-part">
@@ -246,7 +229,7 @@
     <!-- Faq Section Start -->
     <div class="rs-faq-part style1 pt-100 pb-100 md-pt-70 md-pb-70" id="apply">
         <div class="container">
-            <div class="row contact-page-section"> 
+            <div class="row contact-page-section">
                 <div class="col-lg-6 padding-0">
                     <div class="rs-quick-contact new-style">
                         <div class="inner-part mb-50">
@@ -258,13 +241,13 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="name" name="name" placeholder="Name" required="">
-                                </div> 
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="email" name="email" placeholder="Email" required="">
-                                </div>   
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="phone" name="phone" placeholder="Phone" required="">
-                                </div>   
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <select class="from-control form-select" id="course" name="course" data-placeholder="Course Intrested" required="">
                                         <option></option>
@@ -279,14 +262,14 @@
                                         <option>Web Development Course</option>
                                     </select>
                                 </div>
-                                     
+
                                 <div class="col-lg-12 mb-50">
                                     <textarea class="from-control" id="message" name="message" placeholder=" Message" required=""></textarea>
                                 </div>
                             </div>
                             <div class="form-group mb-0">
                                 <input class="btn-send" type="submit" value="Submit Now">
-                            </div>       
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -324,7 +307,7 @@
                         <a href="#"><img src="/images/partner/4.png" alt=""></a>
                     </div>
             </div>
-        </div> 
+        </div>
     </div>
     <!-- Partner End -->
 
@@ -335,38 +318,38 @@
                 <div class="sub-title primary">Testimonial</div>
                 <h2 class="title mb-0">What Students Saying</h2>
             </div>
-            <div class="rs-carousel owl-carousel" 
-                data-loop="true" 
-                data-items="2" 
-                data-margin="30" 
-                data-autoplay="true" 
-                data-hoverpause="true" 
-                data-autoplay-timeout="5000" 
-                data-smart-speed="800" 
-                data-dots="true" 
-                data-nav="false" 
-                data-nav-speed="false" 
+            <div class="rs-carousel owl-carousel"
+                data-loop="true"
+                data-items="1"
+                data-margin="30"
+                data-autoplay="true"
+                data-hoverpause="true"
+                data-autoplay-timeout="5000"
+                data-smart-speed="800"
+                data-dots="true"
+                data-nav="false"
+                data-nav-speed="false"
 
-                data-md-device="2" 
-                data-md-device-nav="false" 
-                data-md-device-dots="true" 
+                data-md-device="1"
+                data-md-device-nav="false"
+                data-md-device-dots="true"
                 data-center-mode="false"
 
-                data-ipad-device2="1" 
-                data-ipad-device-nav2="false" 
+                data-ipad-device2="1"
+                data-ipad-device-nav2="false"
                 data-ipad-device-dots2="true"
 
-                data-ipad-device="2" 
-                data-ipad-device-nav="false" 
-                data-ipad-device-dots="true" 
+                data-ipad-device="1"
+                data-ipad-device-nav="false"
+                data-ipad-device-dots="true"
 
-                data-mobile-device="1" 
-                data-mobile-device-nav="false" 
+                data-mobile-device="1"
+                data-mobile-device-nav="false"
                 data-mobile-device-dots="false">
                 <div class="testi-item">
-                    <div class="author-desc">                                
+                    <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">Enrolling in the Java Full Stack Developer course at My Java Learning Center was a game-changer for me. The comprehensive curriculum and hands-on approach gave me the confidence to tackle real-world projects. The instructor's guidance was invaluable, and I'm now working as a Java developer, thanks to the skills I gained here.</div>
-                                
+
                     </div>
                     <div class="author-part">
                         <a class="name" href="#">Sarah Thompson</a>
@@ -376,7 +359,7 @@
                 <div class="testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I can't recommend My Java Learning Center enough! The Core Java course not only provided a solid foundation but also ignited my passion for programming. The instructor's dedication to teaching and the supportive community of learners made the experience truly exceptional.</div>
-                                
+
                     </div>
                     <div class="author-part">
                         <a class="name" href="#">John Carter</a>
@@ -386,17 +369,17 @@
                 <div class="testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I had always been fascinated by technology but had no coding background. My Java Learning Center's Core Java Course was the perfect starting point. The instructor's patient guidance and interactive sessions made learning enjoyable. I now feel equipped to tackle coding challenges head-on.</div>
-                                
+
                     </div>
                     <div class="author-part">
                         <a class="name" href="#">Alex Kim</a>
                         <span class="designation">Student</span>
                     </div>
-                </div>   
+                </div>
                 <div class="testi-item">
-                    <div class="author-desc">                                
+                    <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I can't thank My Java Learning Center enough for their DSA course. The instructor's teaching style and step-by-step approach helped me grasp complex algorithms and data structures. I aced my technical interviews and secured a position at my dream company.</div>
-                                
+
                     </div>
                     <div class="author-part">
                         <a class="name" href="#">Jessica Lee</a>
@@ -406,7 +389,7 @@
                 <div class="testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">II thought learning programming would be overwhelming, but My Java Learning Center proved me wrong. The DevOps course taught me to automate processes and improve collaboration between development and operations teams. It completely changed the way I approach software development.</div>
-                                
+
                     </div>
                     <div class="author-part">
                         <a class="name" href="#">Mark Williams</a>
@@ -416,7 +399,7 @@
                 <div class="testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">As an aspiring full stack developer, the Java Full Stack Developer course exceeded my expectations. The course covered everything from frontend frameworks to backend development. The hands-on projects helped me apply what I learned, and I'm now building web applications with confidence.</div>
-                                
+
                     </div>
                     <div class="author-part">
                         <a class="name" href="#">Jessica Hernandez</a>
@@ -557,5 +540,5 @@
         <!-- Newsletter section end -->
     </div>
     <!-- Section bg Wrap 2 End -->
-</div> 
+</div>
 @endsection
