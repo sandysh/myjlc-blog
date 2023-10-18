@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row y-middle">
                     <div class="col-md-3 topbar-right">
-
+{{--                        some data here--}}
                     </div>
                     <div class="col-md-9 text-end">
                         <ul class="topbar-contact">
