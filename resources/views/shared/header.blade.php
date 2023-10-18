@@ -7,28 +7,32 @@
         <div class="topbar-area home8-topbar">
             <div class="container">
                 <div class="row y-middle">
-                    <div class="col-md-9 topbar-right">
+                    <div class="col-md-3 topbar-right">
+
+                    </div>
+                    <div class="col-md-9 text-end">
                         <ul class="topbar-contact">
                             <li>
                                 <i class="flaticon-email"></i>
                                 <a href="mailto:hello@myjavalearningcenter.com">hello@myjavalearningcenter.com</a>
                             </li>
                             <li>
-                                <i class="flaticon-call"></i>
-                                <a href="tel:+91-7090366699">+91-70903 66699</a>
-
-                                <i class="flaticon-call"></i>
-                                <a href="tel:+91-7090466699">+91-70904 66699</a>
+                                <span style="margin-right:15px">
+                                    <i class="flaticon-call"></i>
+                                    <a href="tel:+91-7090366699">+91-70903 66699</a>
+                                </span>
+                                <span>
+                                    <i class="flaticon-call"></i>
+                                    <a href="tel:+91-7090466699">+91-70904 66699</a>
+                                </span>
 
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-md-3 text-end">
-                        <ul class="topbar-right">
-                            <li class="btn-part">
-                                <a class="apply-btn" href="https://myjavalearningcenter.com/book-free-demo">Book Free Demo</a>
-                            </li>
-                        </ul>
+{{--                        <ul class="topbar-right">--}}
+{{--                            <li class="btn-part">--}}
+{{--                                <a class="apply-btn" href="https://myjavalearningcenter.com/book-free-demo">Book Free Demo</a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
                     </div>
                 </div>
             </div>
