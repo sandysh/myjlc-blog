@@ -47,6 +47,13 @@
                     <span>Notices</span></a>
             </li>
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('banners.index') }}">
+                    <i class="fas fa-fw fa-th"></i>
+                    <span>Banners</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

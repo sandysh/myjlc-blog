@@ -66,7 +66,7 @@
                                      </li> -->
 
                                      <li class="menu-item-has-children">
-                                         <a href="{{ route('courses.index') }}">Courses</a>
+                                         <a href="{{ route('web.courses.index') }}">Courses</a>
                                          <ul class="sub-menu">
                                              @foreach($courses->whereActive(1)->get(['title','slug']) as $course)
                                                  <li><a href="{{ route('courses.show',[$course->slug]) }}">{{ $course->title }}</a> </li>

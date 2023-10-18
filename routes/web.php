@@ -27,5 +27,5 @@ Route::get('post/{post}/comment',[PostController::class,'getPostComments']);
 Route::get('posts/tags',[PostController::class,'getTags']);
 Route::get('posts/recent',[PostController::class,'recent']);
 Route::get('post/{post}/shared',[PostController::class,'shared']);
-Route::get('courses',[\App\Http\Controllers\CourseController::class,'index'])->name('courses.index');
+Route::get('courses',[\App\Http\Controllers\CourseController::class,'index'])->name('web.courses.index');
 Route::get('courses/{course}',[\App\Http\Controllers\CourseController::class,'show'])->name('courses.show');
