@@ -17,7 +17,7 @@
                                 <a href="mailto:hello@myjavalearningcenter.com">hello@myjavalearningcenter.com</a>
                             </li>
                             <li>
-                                <span style="margin-right:15px">
+                                <span style="margin-right:15px;">
                                     <i class="flaticon-call"></i>
                                     <a href="tel:+91-7090366699">+91-70903 66699</a>
                                 </span>
