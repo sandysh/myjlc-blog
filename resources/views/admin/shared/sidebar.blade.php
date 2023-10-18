@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('courses.index') }}">
+                <a class="nav-link" href="{{ route('notices.index') }}">
                     <i class="fas fa-fw fa-th"></i>
                     <span>Notices</span></a>
             </li>
