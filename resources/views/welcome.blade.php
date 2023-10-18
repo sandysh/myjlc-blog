@@ -3,13 +3,28 @@
 @section('content')
 <div class="main-content">
     <!-- Banner Section Start -->
-    <div id="rs-banner" class="rs-banner style1" style="background:url({{'storage/'.$banner->image}})">
-        <div class="container">
-            <div class="banner-content text-center">
-                <h1 class="banner-title capitalize wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms" style="color:white;">{{ $banner->title }}</h1>
-                <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms" style="color:white;">{{ $banner->tagline }}</div>
+    @if($banner)
+        <div id="rs-banner" class="rs-banner style1" style="background:url({{'storage/'.$banner->image}})">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <h1 class="banner-title capitalize wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms" style="color:white;">{{ $banner->title }}</h1>
+                    <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms" style="color:white;">{{ $banner->tagline }}</div>
+                </div>
             </div>
         </div>
+    @else
+        <div id="rs-banner" class="rs-banner style1">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <h1 class="banner-title capitalize wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="3000ms" style="color:white;">The Art Of Practical Coding
+                    </h1>
+                    <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms" style="color:white;">Learn Real-World Programming from the Industry's Best.
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     </div>
     <!-- Banner Section End -->
 
