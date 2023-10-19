@@ -308,7 +308,7 @@
                 <div class="sub-title primary">Clients</div>
                 <h2 class="title mb-0">Where Our Students Work</h2>
             </div>
-            @if($clients)
+            @if(count($clients) > 0)
             <div class="container">
                     @foreach(collect($clients)->chunk(7) as $client)
                     <div class="row" style="margin-bottom: 3em">
