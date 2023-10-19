@@ -308,6 +308,7 @@
                 <div class="sub-title primary">Clients</div>
                 <h2 class="title mb-0">Where Our Students Work</h2>
             </div>
+            @if($clients)
             <div class="container">
                     @foreach(collect($clients)->chunk(7) as $client)
                     <div class="row" style="margin-bottom: 3em">
@@ -319,22 +320,22 @@
                     </div>
                 @endforeach
             </div>
-
-
-{{--            <div class="rs-carousel owl-carousel" data-loop="true" data-items="5" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="true" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="5" data-md-device-nav="true" data-md-device-dots="false">--}}
-{{--                    <div class="partner-item">--}}
-{{--                        <a href="#"><img src="/images/partner/1.png" alt=""></a>--}}
-{{--                    </div>--}}
-{{--                    <div class="partner-item">--}}
-{{--                        <a href="#"><img src="/images/partner/2.png" alt=""></a>--}}
-{{--                    </div>--}}
-{{--                    <div class="partner-item">--}}
-{{--                        <a href="#"><img src="/images/partner/3.png" alt=""></a>--}}
-{{--                    </div>--}}
-{{--                    <div class="partner-item">--}}
-{{--                        <a href="#"><img src="/images/partner/4.png" alt=""></a>--}}
-{{--                    </div>--}}
-{{--            </div>--}}
+            @else
+            <div class="rs-carousel owl-carousel" data-loop="true" data-items="5" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="true" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="5" data-md-device-nav="true" data-md-device-dots="false">
+                    <div class="partner-item">
+                        <a href="#"><img src="/images/partner/1.png" alt=""></a>
+                    </div>
+                    <div class="partner-item">
+                        <a href="#"><img src="/images/partner/2.png" alt=""></a>
+                    </div>
+                    <div class="partner-item">
+                        <a href="#"><img src="/images/partner/3.png" alt=""></a>
+                    </div>
+                    <div class="partner-item">
+                        <a href="#"><img src="/images/partner/4.png" alt=""></a>
+                    </div>
+            </div>
+            @endif
         </div>
     </div>
     <!-- Partner End -->
@@ -438,7 +439,6 @@
         </div>
     </div>
     <!-- Testimonial Section End -->
-
     <!-- Section bg Wrap 2 start -->
     <div class="bg2">
         <!-- Blog Section Start -->
