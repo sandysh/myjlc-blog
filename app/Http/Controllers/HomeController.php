@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Client;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class HomeController extends Controller
     {
         $notices = Notice::whereActive(1)->latest()->limit(5)->get();
         $banner = Banner::whereActive(1)->first();
-        return view('welcome', compact('notices','banner'));
+        $clients = Client::whereActive(1)->get();
+        return view('welcome', compact('notices','banner','clients'));
     }
 }

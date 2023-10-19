@@ -38,3 +38,5 @@ Route::resource('notices', NoticeController::class);
 
 /*Banners*/
 Route::resource('banners',BannerController::class);
+
+Route::resource('clients',\App\Http\Controllers\Admin\ClientController::class);
