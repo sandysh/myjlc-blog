@@ -9380,9 +9380,9 @@ ul {
   position: relative;
   color: #505050;
   padding: 80px 40px 30px;
-  font-size: 23px;
+  font-size: 18px;
   line-height: 33px;
-  font-weight: 500;
+  /*font-weight: 500;*/
   font-style: italic;
 }
 .rs-testimonial.home-style1 .testi-item .author-desc .desc .quote {

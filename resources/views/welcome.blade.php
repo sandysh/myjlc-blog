@@ -321,7 +321,7 @@
                 @endforeach
             </div>
             @else
-            <div class="rs-carousel owl-carousel" data-loop="true" data-items="5" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="true" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="5" data-md-device-nav="true" data-md-device-dots="false">
+            <div class="owl-carousel" data-loop="true" data-items="5" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="true" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="5" data-md-device-nav="true" data-md-device-dots="false">
                     <div class="partner-item">
                         <a href="#"><img src="/images/partner/1.png" alt=""></a>
                     </div>
@@ -374,18 +374,29 @@
 
                 data-mobile-device="1"
                 data-mobile-device-nav="false"
-                data-mobile-device-dots="false">
-                <div class="testi-item">
+                data-mobile-device-dots="true">
+                <div class="item testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">Enrolling in the Java Full Stack Developer course at My Java Learning Center was a game-changer for me. The comprehensive curriculum and hands-on approach gave me the confidence to tackle real-world projects. The instructor's guidance was invaluable, and I'm now working as a Java developer, thanks to the skills I gained here.</div>
 
                     </div>
                     <div class="author-part">
-                        <a class="name" href="#">Sarah Thompson</a>
-                        <span class="designation">Student</span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2 offset-4" style="border-right: 1px solid #94a3b8; padding: 5px; text-align: center">
+                                    <a class="name" href="#">Sarah Thompson</a>
+                                    <span class="designation">Student</span>
+                                </div>
+                                <div class="col-2" style="text-align: center; margin-top: 20px">
+                                    <img style="width: 10em" src="https://nxtwave.imgix.net/ccbp-website/Home/one-line-testimonials/Amazon-3x.png?auto=format,compress&q=80" alt="">
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
-                <div class="testi-item">
+                <div class="item testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I can't recommend My Java Learning Center enough! The Core Java course not only provided a solid foundation but also ignited my passion for programming. The instructor's dedication to teaching and the supportive community of learners made the experience truly exceptional.</div>
 
@@ -395,7 +406,7 @@
                         <span class="designation">Student</span>
                     </div>
                 </div>
-                <div class="testi-item">
+                <div class="item testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I had always been fascinated by technology but had no coding background. My Java Learning Center's Core Java Course was the perfect starting point. The instructor's patient guidance and interactive sessions made learning enjoyable. I now feel equipped to tackle coding challenges head-on.</div>
 
@@ -405,7 +416,7 @@
                         <span class="designation">Student</span>
                     </div>
                 </div>
-                <div class="testi-item">
+                <div class="item testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I can't thank My Java Learning Center enough for their DSA course. The instructor's teaching style and step-by-step approach helped me grasp complex algorithms and data structures. I aced my technical interviews and secured a position at my dream company.</div>
 
@@ -415,7 +426,7 @@
                         <span class="designation">Student</span>
                     </div>
                 </div>
-                <div class="testi-item">
+                <div class="item testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">II thought learning programming would be overwhelming, but My Java Learning Center proved me wrong. The DevOps course taught me to automate processes and improve collaboration between development and operations teams. It completely changed the way I approach software development.</div>
 
@@ -425,7 +436,7 @@
                         <span class="designation">Student</span>
                     </div>
                 </div>
-                <div class="testi-item">
+                <div class="item testi-item">
                     <div class="author-desc">
                         <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">As an aspiring full stack developer, the Java Full Stack Developer course exceeded my expectations. The course covered everything from frontend frameworks to backend development. The hands-on projects helped me apply what I learned, and I'm now building web applications with confidence.</div>
 

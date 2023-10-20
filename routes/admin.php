@@ -40,3 +40,5 @@ Route::resource('notices', NoticeController::class);
 Route::resource('banners',BannerController::class);
 
 Route::resource('clients',\App\Http\Controllers\Admin\ClientController::class);
+
+Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);

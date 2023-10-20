@@ -31,7 +31,7 @@
         });
 
     });
-	
+
     //window load
    $(window).on( 'load', function() {
         $("#loading").delay(1500).fadeOut(500);
@@ -54,7 +54,7 @@
                $(".showhide").trigger("click");
            }
        });
-       
+
        if ($.fn.onePageNav) {
            $(".nav-menu").onePageNav({
                currentClass: "active-menu"
@@ -85,21 +85,21 @@
             focusOnSelect: true,
         });
     }
- 
-    // collapse hidden  
+
+    // collapse hidden
      var navMain = $(".navbar-collapse");
      navMain.on("click", "a:not([data-toggle])", null, function () {
          navMain.collapse('hide');
-     });  
+     });
 
-    // video 
+    // video
     if ($('.player').length) {
         $(".player").YTPlayer();
     }
 
     // wow init
     new WOW().init();
-    
+
     // image loaded portfolio init
     var gridfilter = $('.grid');
         if(gridfilter.length){
@@ -118,8 +118,8 @@
                 }
             });
         });
-    }   
-        
+    }
+
     // project Filter
     if ($('.gridFilter button').length) {
         var projectfiler = $('.gridFilter button');
@@ -131,7 +131,7 @@
             });
         }
     }
-    
+
     // magnificPopup init
     var imagepopup = $('.image-popup');
     if(imagepopup.length){
@@ -168,13 +168,13 @@
             }
         });
     }
-    
+
     //preloader
     $(window).on('load', function() {
         $("#loader").delay(1000).fadeOut(500);
     })
 
-    //Videos popup jQuery 
+    //Videos popup jQuery
     var popupvideos = $('.popup-videos');
     if(popupvideos.length){
         $('.popup-videos').magnificPopup({
@@ -184,104 +184,107 @@
             removalDelay: 160,
             preloader: false,
             fixedContentPos: false
-        }); 
+        });
     }
-    
+
     /*-------------------------------------
         OwlCarousel
     -------------------------------------*/
-    $('.rs-carousel').each(function() {
-        var owlCarousel = $(this),
-        loop = owlCarousel.data('loop'),
-        items = owlCarousel.data('items'),
-        margin = owlCarousel.data('margin'),
-        stagePadding = owlCarousel.data('stage-padding'),
-        autoplay = owlCarousel.data('autoplay'),
-        autoplayTimeout = owlCarousel.data('autoplay-timeout'),
-        smartSpeed = owlCarousel.data('smart-speed'),
-        dots = owlCarousel.data('dots'),
-        nav = owlCarousel.data('nav'),
-        navSpeed = owlCarousel.data('nav-speed'),
-        xsDevice = owlCarousel.data('mobile-device'),
-        xsDeviceNav = owlCarousel.data('mobile-device-nav'),
-        xsDeviceDots = owlCarousel.data('mobile-device-dots'),
-        smDevice = owlCarousel.data('ipad-device'),
-        smDeviceNav = owlCarousel.data('ipad-device-nav'),
-        smDeviceDots = owlCarousel.data('ipad-device-dots'),
-        smDevice2 = owlCarousel.data('ipad-device2'),
-        smDeviceNav2 = owlCarousel.data('ipad-device-nav2'),
-        smDeviceDots2 = owlCarousel.data('ipad-device-dots2'),
-        mdDevice = owlCarousel.data('md-device'),
-        centerMode = owlCarousel.data('center-mode'),
-        HoverPause = owlCarousel.data('hoverpause'),
-        mdDeviceNav = owlCarousel.data('md-device-nav'),
-        mdDeviceDots = owlCarousel.data('md-device-dots');
-        owlCarousel.owlCarousel({
-            loop: (loop ? true : false),
-            items: (items ? items : 4),
-            lazyLoad: true,
-            center: (centerMode ? true : false),
-            autoplayHoverPause: (HoverPause ? true : false),
-            margin: (margin ? margin : 0),
-            //stagePadding: (stagePadding ? stagePadding : 0),
-            autoplay: (autoplay ? true : false),
-            autoplayTimeout: (autoplayTimeout ? autoplayTimeout : 1000),
-            smartSpeed: (smartSpeed ? smartSpeed : 250),
-            dots: (dots ? true : false),
-            nav: (nav ? true : false),
-            navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-            navSpeed: (navSpeed ? true : false),
-            responsiveClass: true,
-            responsive: {
-                0: {
-                    items: (xsDevice ? xsDevice : 1),
-                    nav: (xsDeviceNav ? true : false),
-                    dots: (xsDeviceDots ? true : false),
-                    center: false,
-                },
-                576: {
-                    items: (smDevice2 ? smDevice2 : 2),
-                    nav: (smDeviceNav2 ? true : false),
-                    dots: (smDeviceDots2 ? true : false),
-                    center: false,
-                },
-                768: {
-                    items: (smDevice ? smDevice : 3),
-                    nav: (smDeviceNav ? true : false),
-                    dots: (smDeviceDots ? true : false),
-                    center: false,
-                },
-                992: {
-                    items: (mdDevice ? mdDevice : 4),
-                    nav: (mdDeviceNav ? true : false),
-                    dots: (mdDeviceDots ? true : false),
+    $(function(){
+        $('.rs-carousel').each(function() {
+            console.log($(this));
+            var owlCarousel = $(this),
+                loop = owlCarousel.data('loop'),
+                items = owlCarousel.data('items'),
+                margin = owlCarousel.data('margin'),
+                stagePadding = owlCarousel.data('stage-padding'),
+                autoplay = owlCarousel.data('autoplay'),
+                autoplayTimeout = owlCarousel.data('autoplay-timeout'),
+                smartSpeed = owlCarousel.data('smart-speed'),
+                dots = owlCarousel.data('dots'),
+                nav = owlCarousel.data('nav'),
+                navSpeed = owlCarousel.data('nav-speed'),
+                xsDevice = owlCarousel.data('mobile-device'),
+                xsDeviceNav = owlCarousel.data('mobile-device-nav'),
+                xsDeviceDots = owlCarousel.data('mobile-device-dots'),
+                smDevice = owlCarousel.data('ipad-device'),
+                smDeviceNav = owlCarousel.data('ipad-device-nav'),
+                smDeviceDots = owlCarousel.data('ipad-device-dots'),
+                smDevice2 = owlCarousel.data('ipad-device2'),
+                smDeviceNav2 = owlCarousel.data('ipad-device-nav2'),
+                smDeviceDots2 = owlCarousel.data('ipad-device-dots2'),
+                mdDevice = owlCarousel.data('md-device'),
+                centerMode = owlCarousel.data('center-mode'),
+                HoverPause = owlCarousel.data('hoverpause'),
+                mdDeviceNav = owlCarousel.data('md-device-nav'),
+                mdDeviceDots = owlCarousel.data('md-device-dots');
+            owlCarousel.owlCarousel({
+                loop: true,
+                items: (items ? items : 4),
+                lazyLoad: true,
+                center: (centerMode ? true : false),
+                autoplayHoverPause: (HoverPause ? true : false),
+                margin: (margin ? margin : 0),
+                //stagePadding: (stagePadding ? stagePadding : 0),
+                autoplay: true,
+                autoplayTimeout: (autoplayTimeout ? autoplayTimeout : 1000),
+                smartSpeed: (smartSpeed ? smartSpeed : 250),
+                dots: (dots ? true : false),
+                nav: (nav ? true : false),
+                navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+                navSpeed: (navSpeed ? true : false),
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: (xsDevice ? xsDevice : 1),
+                        nav: (xsDeviceNav ? true : false),
+                        dots: (xsDeviceDots ? true : false),
+                        center: false,
+                    },
+                    576: {
+                        items: (smDevice2 ? smDevice2 : 2),
+                        nav: (smDeviceNav2 ? true : false),
+                        dots: (smDeviceDots2 ? true : false),
+                        center: false,
+                    },
+                    768: {
+                        items: (smDevice ? smDevice : 3),
+                        nav: (smDeviceNav ? true : false),
+                        dots: (smDeviceDots ? true : false),
+                        center: false,
+                    },
+                    992: {
+                        items: (mdDevice ? mdDevice : 4),
+                        nav: (mdDeviceNav ? true : false),
+                        dots: (mdDeviceDots ? true : false),
+                    }
                 }
-            }
+            });
         });
-    });
+    })
 
-    // Skill bar 
+    // Skill bar
     var skillbar = $('.skillbar');
     if(skillbar.length) {
-        $('.skillbar').skillBars({  
-            from: 0,    
-            speed: 4000,    
-            interval: 100,  
-            decimals: 0,    
+        $('.skillbar').skillBars({
+            from: 0,
+            speed: 4000,
+            interval: 100,
+            decimals: 0,
         });
     }
-		
+
     // Counter Up
     var counter = $('.rs-count');
-    if(counter.length) {  
+    if(counter.length) {
         $('.rs-count').counterUp({
             delay: 20,
             time: 1500
         });
     }
-    
-    // scrollTop init	
-    var totop = $('#scrollUp');    
+
+    // scrollTop init
+    var totop = $('#scrollUp');
     win.on('scroll', function() {
         if (win.scrollTop() > 150) {
             totop.fadeIn();
@@ -321,8 +324,8 @@
         e.preventDefault();
         $('.rs-popular-courses').addClass('list-view');
     });
-    
-	
+
+
 	/*----------------------------
     single-productjs active
     ------------------------------ */
@@ -358,7 +361,7 @@
                     slidesToShow: 2
                   }
                 }
-              ] 
+              ]
         });
     }
 
@@ -372,6 +375,6 @@
     if(tilt.length) {
         const tilt = $('.js-tilt').tilt();
     }
-    
+
 
 })(jQuery);

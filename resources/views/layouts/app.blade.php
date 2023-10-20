@@ -20,7 +20,8 @@
     <!-- animate css -->
     <link rel="stylesheet" type="text/css" href="/css/animate.css">
     <!-- owl.carousel css -->
-    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.theme.default.min.css">
     <!-- slick css -->
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <!-- off canvas css -->
@@ -66,7 +67,7 @@
         <!--Full width header End-->
         <!-- Main content Start -->
         <div class="main-content">
-            @yield('content')       
+            @yield('content')
         </div>
         <!-- Main content End -->
 
