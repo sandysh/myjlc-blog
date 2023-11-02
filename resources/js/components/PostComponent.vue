@@ -3,16 +3,16 @@
         <div id="rs-popular-courses" class="rs-popular-courses style1 orange-color pt-50 pb-100 md-pt-70 md-pb-70">
             <div class="container">
                 <div class="gridFilter text-center mb-50">
-                    <button @click="filterPosts()" 
-                    :class="active.category === 0 ?'active-btn':''" 
-                    class="btn" data-filter="*">All </button>
-                    <button @click="filterPosts({category:category.id})" 
-                    :class="active.category === category.id ?'active-btn':''" 
-                    class="btn" v-for="category in categories.list"> {{ category.name }} </button>
+                    <button @click="filterPosts()"
+                    :class="active.category === 0 ?'active-btn':''"
+                    class="btn" data-filter="*">All ({{ posts.list.total }}) </button>
+                    <button @click="filterPosts({category:category.id})"
+                    :class="active.category === category.id ?'active-btn':''"
+                    class="btn" v-for="category in categories.list"> {{ category.name }} ({{ category.posts_count }}) </button>
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-8">
-                      <div v-for="post in posts.list.data" 
+                      <div v-for="post in posts.list.data"
                       class="row g-0 rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative content white-bg mt-30">
                         <div class="col-10 p-4 d-flex flex-column">
                             <span class="mb-1 text-muted">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="col-2 d-none d-lg-block">
-                            <img :src="'/storage/'+post.featured_image" alt="" 
+                            <img :src="'/storage/'+post.featured_image" alt=""
                             style="width: 100%; float: right; vertical-align: middle; margin: 2rem;">
                         </div>
                       </div>
@@ -54,11 +54,11 @@
                             </li>
                             </ul>
                         </div>
-                        
+
                         <div class="mt-5"></div>
                         <h4>Tags</h4>
-                        <span v-for="(tag,index) in tags.list" :key="index" 
-                        :class="active.tag === tag ?'active-tag':''" 
+                        <span v-for="(tag,index) in tags.list" :key="index"
+                        :class="active.tag === tag ?'active-tag':''"
                         class="badge primary rounded-pill text-bg-dark tags">
                             <a href="#!" @click="filterPosts({tag:tag})">{{ tag }}</a>
                         </span>
@@ -113,7 +113,7 @@ const moment = inject('moment');
             active.category = ref(0);
             active.tag = ref(0);
         }
-       
+
     }
 
     function getTags() {
@@ -150,7 +150,7 @@ const moment = inject('moment');
     a {
         color: #bd1717;
     }
-    
+
     .active-btn {
         color: #bd1717 !important;
         border: 1px solid #bd1717 !important;

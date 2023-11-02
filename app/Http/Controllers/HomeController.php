@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Client;
+use App\Models\Course;
 use App\Models\Notice;
+use App\Models\Setting;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,6 +32,14 @@ class HomeController extends Controller
         $notices = Notice::whereActive(1)->latest()->limit(5)->get();
         $banner = Banner::whereActive(1)->first();
         $clients = Client::whereActive(1)->get();
-        return view('welcome', compact('notices','banner','clients'));
+        $testimonials = Testimonial::whereActive(1)->get();
+        $popularArray = Setting::where('key','popular')->first();
+        $popularArray =  json_decode($popularArray->value);
+        $popularCourses = Course::with('category')->whereIn('id',collect($popularArray)->toArray())
+            ->select('*')
+            ->selectRaw('LEFT(`overview`, 100) as `overview`')
+            ->get();
+        return view('welcome', compact('notices','banner','clients','testimonials',
+        'popularCourses'));
     }
 }

@@ -23,6 +23,9 @@ app.component('posts-table-component', PostsTableComponent);
 import PostComponent from './components/PostComponent.vue';
 app.component('post-component',PostComponent);
 
+import CourseComponent from './components/CourseComponent.vue';
+app.component('course-component',CourseComponent);
+
 import CommentComponent from './components/Comment.vue';
 app.component('comment-component',CommentComponent);
 

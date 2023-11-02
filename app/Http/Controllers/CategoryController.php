@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use F9Web\ApiResponseHelpers;
 
@@ -12,7 +13,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::whereActive(1)->get();
+        $categories = Category::withCount(['posts'])->has('posts','>',0)->whereActive(1)->get();
         return $this->respondWithSuccess($categories);
     }
 }

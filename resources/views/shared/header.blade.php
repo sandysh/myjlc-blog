@@ -1,4 +1,3 @@
-@inject('courses','App\Models\Course')
 <!--Full width header Start-->
 <div class="full-width-header header-style1 home8-style4">
     <!--Header Start-->
@@ -16,6 +15,7 @@
                                 <i class="flaticon-email"></i>
                                 <a href="mailto:hello@myjavalearningcenter.com">hello@myjavalearningcenter.com</a>
                             </li>
+
                             <li>
                                 <span style="margin-right:15px;">
                                     <i class="flaticon-call"></i>
@@ -27,6 +27,21 @@
                                 </span>
 
                             </li>
+                            @auth
+                                <li class="login-register">
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button role="button" class="btn btn-link text-muted text-decoration-none" type="submit">
+                                            <i class="fa fa-sign-out"></i>Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            @else
+                                <li class="login-register">
+                                    <i class="fa fa-sign-in"></i>
+                                    <a href="{{ route('login') }}">Login</a>/<a href="{{ route('register') }}">Register</a>
+                                </li>
+                            @endauth
                         </ul>
 {{--                        <ul class="topbar-right">--}}
 {{--                            <li class="btn-part">--}}
@@ -72,7 +87,7 @@
                                      <li class="menu-item-has-children">
                                          <a href="{{ route('web.courses.index') }}">Courses</a>
                                          <ul class="sub-menu">
-                                             @foreach($courses->whereActive(1)->get(['title','slug']) as $course)
+                                             @foreach($courses as $course)
                                                  <li><a href="{{ route('courses.show',[$course->slug]) }}">{{ $course->title }}</a> </li>
                                              @endforeach
                                          </ul>

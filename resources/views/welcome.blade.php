@@ -85,158 +85,36 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
-                    <div class="courses-item">
-                        <div class="img-part">
-                            <img src="/images/courses/1.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
+                @foreach($popularCourses as $popular)
+                    <div class="col-lg-4 col-md-6 mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
+                        <div class="courses-item">
+                            <div class="img-part">
+                                <img src="{{ asset('storage/'.$popular->featured_image) }}" alt="">
+                            </div>
+                            <div class="content-part">
+                                <ul class="meta-part">
 
-                                <li><span class="price"><i class="fa fa-inr"></i>18,000 + GST</span></li>
-                                <li><a class="categorie" href="#">Job Oriented</a></li>
-                            </ul>
-                            <h3 class="title"><a href="/courses/java-developer-course">Java Developer Course</a></h3>
-                            <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 235</li>
+                                    <li><span class="price"><i class="fa fa-inr"></i>{{ $popular->price }} + GST</span></li>
+                                    <li><a class="categorie" href="#">{{ $popular->category->name }}</a></li>
+                                </ul>
+                                <h3 class="title"><a href="{{ route('courses.show',[$popular->slug]) }}">{{ $popular->title }}</a></h3>
+                                <div class="bottom-part">
+                                    <div class="info-meta">
+                                        <ul>
+                                            <li class="user"><i class="fa fa-user"></i> {{ $popular->students }}</li>
 
-                                    </ul>
-                                </div>
-                                <div class="btn-part">
-                                    <a href="/courses/java-developer-course"><i class="flaticon-right-arrow"></i></a>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-part">
+                                        <a href="{{ route('courses.show',[$popular->slug]) }}"><i class="flaticon-right-arrow"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6  mb-30 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms">
-                    <div class="courses-item">
-                        <div class="img-part">
-                            <img src="/images/courses/2.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
-                                 <li><span class="price"><i class="fa fa-inr"></i>25,000 + GST</span></li>
-                                <li><a class="categorie" href="#">Job Oriented</a></li>
-                            </ul>
-                            <h3 class="title"><a href="/courses/java-full-stack-developer-course">Java Full Stack Developer</a></h3>
-                            <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 245</li>
 
-                                    </ul>
-                                </div>
-                                <div class="btn-part">
-                                    <a href="/courses/java-full-stack-developer-course"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                @endforeach
                 </div>
-                <div class="col-lg-4 col-md-6  mb-30 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms">
-                    <div class="courses-item">
-                        <div class="img-part">
-                            <img src="/images/courses/3.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
-                                 <li><span class="price"><i class="fa fa-inr"></i>15,000 + GST</span></li>
-                                <li><a class="categorie" href="#">DSA</a></li>
-                            </ul>
-                            <h3 class="title"><a href="/courses/dsa-course">DSA Course</a></h3>
-                            <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 159 </li>
-
-                                    </ul>
-                                </div>
-                                <div class="btn-part">
-                                    <a href="/courses/dsa-course"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6  mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
-                    <div class="courses-item">
-                        <div class="img-part">
-                            <img src="/images/courses/4.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
-                                 <li><span class="price"><i class="fa fa-inr"></i>15,000 + GST</span></li>
-                                <li><a class="categorie" href="#">AWS</a></li>
-                            </ul>
-                            <h3 class="title"><a href="/courses/aws-course">AWS Course</a></h3>
-                            <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 145 </li>
-
-                                    </ul>
-                                </div>
-                                <div class="btn-part">
-                                    <a href="/courses/aws-course"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6  mb-30 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms">
-                    <div class="courses-item">
-                        <div class="img-part">
-                            <img src="/images/courses/5.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
-                                 <li><span class="price"><i class="fa fa-inr"></i>15,000 + GST</span></li>
-                                <li><a class="categorie" href="#">DevOps</a></li>
-                            </ul>
-                            <h3 class="title"><a href="/courses/devops-course">DevOps Course</a></h3>
-                            <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 194 </li>
-
-                                    </ul>
-                                </div>
-                                <div class="btn-part">
-                                    <a href="/courses/devops-course"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6  mb-30 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms">
-                    <div class="courses-item">
-                        <div class="img-part">
-                            <img src="/images/courses/6.jpg" alt="">
-                        </div>
-                        <div class="content-part">
-                            <ul class="meta-part">
-                                 <li><span class="price"><i class="fa fa-inr"></i>6,000 + GST</span></li>
-                                <li><a class="categorie" href="#">DevOps</a></li>
-                            </ul>
-                            <h3 class="title"><a href="/courses/kubernetes-course">Kubernetes Course</a></h3>
-                            <div class="bottom-part">
-                                <div class="info-meta">
-                                    <ul>
-                                        <li class="user"><i class="fa fa-user"></i> 194 </li>
-
-                                    </ul>
-                                </div>
-                                <div class="btn-part">
-                                    <a href="/courses/kubernetes-course"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Popular Courses Section End -->
@@ -252,7 +130,8 @@
                             <p>Enroll now and unlock your potential in the realm of software development!</p>
                         </div>
                         <div id="form-messages"></div>
-                        <form id="contact-form" method="post" action="/book-demo">
+                        <form id="contact-form" method="post" action="{{ route('post.query') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="name" name="name" placeholder="Name" required="">
@@ -375,77 +254,29 @@
                 data-mobile-device="1"
                 data-mobile-device-nav="false"
                 data-mobile-device-dots="true">
+                @foreach($testimonials as $testimonial)
                 <div class="item testi-item">
                     <div class="author-desc">
-                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">Enrolling in the Java Full Stack Developer course at My Java Learning Center was a game-changer for me. The comprehensive curriculum and hands-on approach gave me the confidence to tackle real-world projects. The instructor's guidance was invaluable, and I'm now working as a Java developer, thanks to the skills I gained here.</div>
+                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">
+                            {{ $testimonial->description }}
+                        </div>
 
                     </div>
                     <div class="author-part">
                         <div class="container">
                             <div class="row">
                                 <div class="col-2 offset-4" style="border-right: 1px solid #94a3b8; padding: 5px; text-align: center">
-                                    <a class="name" href="#">Sarah Thompson</a>
-                                    <span class="designation">Student</span>
+                                    <a class="name" href="#">{{ $testimonial->name }}</a>
+                                    <span class="designation">{{ $testimonial->designation }}</span>
                                 </div>
                                 <div class="col-2" style="text-align: center; margin-top: 20px">
-                                    <img style="width: 10em" src="https://nxtwave.imgix.net/ccbp-website/Home/one-line-testimonials/Amazon-3x.png?auto=format,compress&q=80" alt="">
+                                    <img style="width: 10em" src="{{ asset('storage/'.$testimonial->company_image) }}" alt="">
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-
-                </div>
-                <div class="item testi-item">
-                    <div class="author-desc">
-                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I can't recommend My Java Learning Center enough! The Core Java course not only provided a solid foundation but also ignited my passion for programming. The instructor's dedication to teaching and the supportive community of learners made the experience truly exceptional.</div>
-
-                    </div>
-                    <div class="author-part">
-                        <a class="name" href="#">John Carter</a>
-                        <span class="designation">Student</span>
                     </div>
                 </div>
-                <div class="item testi-item">
-                    <div class="author-desc">
-                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I had always been fascinated by technology but had no coding background. My Java Learning Center's Core Java Course was the perfect starting point. The instructor's patient guidance and interactive sessions made learning enjoyable. I now feel equipped to tackle coding challenges head-on.</div>
-
-                    </div>
-                    <div class="author-part">
-                        <a class="name" href="#">Alex Kim</a>
-                        <span class="designation">Student</span>
-                    </div>
-                </div>
-                <div class="item testi-item">
-                    <div class="author-desc">
-                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">I can't thank My Java Learning Center enough for their DSA course. The instructor's teaching style and step-by-step approach helped me grasp complex algorithms and data structures. I aced my technical interviews and secured a position at my dream company.</div>
-
-                    </div>
-                    <div class="author-part">
-                        <a class="name" href="#">Jessica Lee</a>
-                        <span class="designation">Student</span>
-                    </div>
-                </div>
-                <div class="item testi-item">
-                    <div class="author-desc">
-                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">II thought learning programming would be overwhelming, but My Java Learning Center proved me wrong. The DevOps course taught me to automate processes and improve collaboration between development and operations teams. It completely changed the way I approach software development.</div>
-
-                    </div>
-                    <div class="author-part">
-                        <a class="name" href="#">Mark Williams</a>
-                        <span class="designation">Student</span>
-                    </div>
-                </div>
-                <div class="item testi-item">
-                    <div class="author-desc">
-                        <div class="desc"><img class="quote" src="/images/testimonial/style5/quote2.png" alt="">As an aspiring full stack developer, the Java Full Stack Developer course exceeded my expectations. The course covered everything from frontend frameworks to backend development. The hands-on projects helped me apply what I learned, and I'm now building web applications with confidence.</div>
-
-                    </div>
-                    <div class="author-part">
-                        <a class="name" href="#">Jessica Hernandez</a>
-                        <span class="designation">Student</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

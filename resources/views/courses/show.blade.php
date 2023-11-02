@@ -1,5 +1,14 @@
 @extends('layouts.app')
-
+@push('styles')
+    <style>
+        .checked {
+            color: orange !important;
+        }
+        .fa-star {
+            font-size: 30px;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="main-content">
         <!-- Breadcrumbs Start -->
@@ -100,103 +109,83 @@
                                     </div>
 
                                     <!-- Faq -->
-                                    <!-- <div class="content white-bg mt-30">
+                                     <div class="content white-bg mt-30">
                                         <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg">
                                             <h4>Faq</h4>
                                             <div id="faq-accordion" class="accordion">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <a class="card-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOne" area-expanded="true">What do you mean by item and end product?</a>
-                                                    </div>
-                                                    <div id="collapseOne" class="collapse show" data-bs-parent="#faq-accordion">
-                                                        <div class="card-body">
-                                                            Aenean massa. Cum sociis natoque penatibus et magnis dis partu rient to montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellen of the tesque services Donec quam felis, ultricies nec, pellentesque eu, pretium quis,pede justo, of fringilla vel, aliquet nec
+                                                @foreach($course->activeFaqs as $faq)
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <a class="card-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq->id }}" area-expanded="true">{{ $faq->title }}</a>
+                                                        </div>
+                                                        <div id="collapse{{$faq->id}}" class="collapse" data-bs-parent="#faq-accordion">
+                                                            <div class="card-body">
+                                                                {{ $faq->body }}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                 <div class="card">
-                                                     <div class="card-header">
-                                                         <a class="card-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" href="#" aria-expanded="false">What does non-exclusive mean?</a>
-                                                     </div>
-                                                     <div id="collapseTwo" class="collapse" data-bs-parent="#faq-accordion">
-                                                         <div class="card-body">
-                                                             Aenean massa. Cum sociis natoque penatibus et magnis dis partu rient to montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellen of the tesque services Donec quam felis, ultricies nec, pellentesque eu, pretium quis,pede justo, of fringilla vel, aliquet nec
-                                                        </div>
-                                                     </div>
-                                                 </div>
-                                                 <div class="card">
-                                                     <div class="card-header">
-                                                         <a class="card-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false">What are some examples of permitted end products?</a>
-                                                     </div>
-                                                     <div id="collapseThree" class="collapse" data-bs-parent="#faq-accordion">
-                                                         <div class="card-body">
-                                                             Aenean massa. Cum sociis natoque penatibus et magnis dis partu rient to montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellen of the tesque services Donec quam felis, ultricies nec, pellentesque eu, pretium quis,pede justo, of fringilla vel, aliquet nec
-                                                         </div>
-                                                     </div>
-                                                 </div>
+                                                @endforeach
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     <!-- Reviews -->
-                                    <!-- <div class="content white-bg mt-30">
+                                     <div class="content white-bg mt-30">
                                         <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg">
                                             <h4>Reviews</h4>
-                                            <div class="cource-review-box mb-30">
-                                                <h3>Stephane Smith</h3>
-                                                <div class="rating">
-                                                    <span class="total-rating">4.5</span> <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>&ensp; 256 Reviews
+                                            @foreach($course->reviews as $review)
+                                                <div class="cource-review-box mb-30">
+                                                    <h3>{{ $review->user->name }}</h3>
+                                                    <div class="rating star-ratings">
+                                                        <span class="ratings" data-rated="{{$review->stars}}">
+
+                                                        </span>
+                                                    </div>
+                                                    <div class="text"> {{ $review->description }} </div>
+{{--                                                    <div class="helpful">Was this review helpful?</div>--}}
+{{--                                                    <ul class="like-option">--}}
+{{--                                                        <li class="post-positive-review-feedback"--}}
+{{--                                                            data-course="{{$course->id}}"--}}
+{{--                                                            data-review="{{$review->id}}">--}}
+{{--                                                            <i class="fa fa-thumbs-o-up"></i>--}}
+{{--                                                        </li>--}}
+{{--                                                        <li class="post-negative-review-feedback"--}}
+{{--                                                            data-course="{{$course->id}}"--}}
+{{--                                                            data-review="{{$review->id}}"--}}
+{{--                                                        >--}}
+{{--                                                            <i class="fa fa-thumbs-o-down"></i>--}}
+{{--                                                        </li>--}}
+{{--                                                        <li><a class="report" href="#">Report</a></li>--}}
+{{--                                                    </ul>--}}
                                                 </div>
-                                                <div class="text">Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus.</div>
-                                                <div class="helpful">Was this review helpful?</div>
-                                                <ul class="like-option">
-                                                    <li><i class="fa fa-thumbs-o-up"></i></li>
-                                                    <li><i class="fa fa-thumbs-o-down"></i></li>
-                                                    <li><a class="report" href="#">Report</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cource-review-box mb-30">
-                                                <h3>Anna Sthesia</h3>
-                                                <div class="rating">
-                                                    <span class="total-rating">4.5</span> <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>&ensp; 256 Reviews
-                                                </div>
-                                                <div class="text">Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus.</div>
-                                                <div class="helpful">Was this review helpful?</div>
-                                                <ul class="like-option">
-                                                    <li><i class="fa fa-thumbs-o-up"></i></li>
-                                                    <li><i class="fa fa-thumbs-o-down"></i></li>
-                                                    <li><a class="report" href="#">Report</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cource-review-box mb-30">
-                                                <h3>Petey Cruiser</h3>
-                                                <div class="rating">
-                                                    <span class="total-rating">4.5</span> <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>&ensp; 256 Reviews
-                                                </div>
-                                                <div class="text">Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus.</div>
-                                                <div class="helpful">Was this review helpful?</div>
-                                                <ul class="like-option">
-                                                    <li><i class="fa fa-thumbs-o-up"></i></li>
-                                                    <li><i class="fa fa-thumbs-o-down"></i></li>
-                                                    <li><a class="report" href="#">Report</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cource-review-box">
-                                                <h3>Rick O'Shea</h3>
-                                                <div class="rating">
-                                                    <span class="total-rating">4.5</span> <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>&ensp; 256 Reviews
-                                                </div>
-                                                <div class="text">Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus.</div>
-                                                <div class="helpful">Was this review helpful?</div>
-                                                <ul class="like-option">
-                                                    <li><i class="fa fa-thumbs-o-up"></i></li>
-                                                    <li><i class="fa fa-thumbs-o-down"></i></li>
-                                                    <li><a class="report" href="#">Report</a></li>
-                                                </ul>
-                                                <a href="#" class="more">View More</a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @if(!in_array(auth()->id(),($course->reviews->pluck('id')->toArray())))
+                                        <div class="ontent white-bg mt-30">
+                                            <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Leave A Review</h4>
+                                                <form action="{{ route('courses.review.post',$course->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-lg-6 mb-35 col-md-12 star-rating-system"></div>
+                                                        <div class="col-lg-6 mb-35 col-md-12">
+                                                            <input type="hidden" id="post-stars" name="stars" value="0">
+                                                        </div>
+                                                        <div class="col-lg-12 mb-50">
+                                                        <textarea rows="10" class="form-control"
+                                                                  id="description" name="description"
+                                                                  placeholder="Your review here"
+                                                                  required=""></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-0">
+                                                        <button type="submit" class="btn-part btn readon2 orange-transparent"> Comment
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -244,37 +233,68 @@
                                 </ul>
                             </div>
 
-                            <div class="notice-bord style1">
-                                <h4 class="title">Notice Board</h4>
-                                <ul>
-                                    <li class="wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 300ms; animation-name: none;">
-                                        <div class="date"><span>2</span>Oct</div>
-                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>
-                                    </li>
-                                    <li class="wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 400ms; animation-name: none;">
-                                        <div class="date"><span>3</span>Oct</div>
-                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>
-                                    </li>
-                                    <li class="wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 500ms; animation-name: none;">
-                                        <div class="date"><span>4</span>Oct</div>
-                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>
-                                    </li>
+{{--                            <div class="notice-bord style1">--}}
+{{--                                <h4 class="title">Notice Board</h4>--}}
+{{--                                <ul>--}}
+{{--                                    <li class="wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 300ms; animation-name: none;">--}}
+{{--                                        <div class="date"><span>2</span>Oct</div>--}}
+{{--                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 400ms; animation-name: none;">--}}
+{{--                                        <div class="date"><span>3</span>Oct</div>--}}
+{{--                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 500ms; animation-name: none;">--}}
+{{--                                        <div class="date"><span>4</span>Oct</div>--}}
+{{--                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>--}}
+{{--                                    </li>--}}
 
-                                    <li class="wow fadeInUp" data-wow-delay="600ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 600ms; animation-name: none;">
-                                        <div class="date"><span>2</span>Oct</div>
-                                        <div class="desc">Array Programs <br> Timings : 10:00 AM to 11.00 A.M </div>
-                                    </li>
-                                    <li class="wow fadeInUp" data-wow-delay="700ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 700ms; animation-name: none;">
-                                        <div class="date"><span>3</span>Oct</div>
-                                        <div class="desc">Array Programs <br> Timings : 10:00 AM to 11.00 A.M </div>
-                                    </li>
+{{--                                    <li class="wow fadeInUp" data-wow-delay="600ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 600ms; animation-name: none;">--}}
+{{--                                        <div class="date"><span>2</span>Oct</div>--}}
+{{--                                        <div class="desc">Array Programs <br> Timings : 10:00 AM to 11.00 A.M </div>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="wow fadeInUp" data-wow-delay="700ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 700ms; animation-name: none;">--}}
+{{--                                        <div class="date"><span>3</span>Oct</div>--}}
+{{--                                        <div class="desc">Array Programs <br> Timings : 10:00 AM to 11.00 A.M </div>--}}
+{{--                                    </li>--}}
 
 
-                                </ul>
-                            </div>
+{{--                                </ul>--}}
+{{--                            </div>--}}
 
                             <div class="btn-part">
-                                <a href="{{ route('contact') }}" class="btn readon2 orange-transparent">Book Free Demo</a>
+                                <div class="rs-quick-contact new-style">
+                                    <div class="inner-part mb-50">
+                                        <h2 class="title mb-15">Book Free Demo</h2>
+                                        <p>Enroll now and unlock your potential in the realm of software development!</p>
+                                    </div>
+                                    <div id="form-messages">
+                                        @include('shared.alert')
+                                    </div>
+                                    <form id="contact-form" method="post" action="{{ route('post.query') }}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg-12 mb-35 col-md-12">
+                                                <input class="form-control" type="text" id="name" name="name" placeholder="Name" required="">
+                                            </div>
+                                            <div class="col-lg-12 mb-35 col-md-12">
+                                                <input class="form-control" type="text" id="email" name="email" placeholder="Email" required="">
+                                            </div>
+                                            <div class="col-lg-12 mb-35 col-md-12">
+                                                <input class="form-control" type="text" id="phone" name="phone" placeholder="Phone" required="">
+                                            </div>
+
+                                            <input value="{{ $course->title }}" class="form-control" type="hidden" id="course-name" name="course" placeholder="Phone" required="">
+
+                                            <div class="col-lg-12 mb-50">
+                                                <textarea class="form-control" id="message" name="message" placeholder=" Message" required=""></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <input class="btn readon2 orange-transparent" type="submit" value="Submit Now">
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -282,28 +302,56 @@
             </div>
         </section>
         <!-- End intro Courses -->
-
-        <!-- Newsletter section start -->
-        <div class="rs-newsletter style1 orange-color mb--90 sm-mb-0 sm-pb-70">
-            <div class="container">
-                <div class="newsletter-wrap">
-                    <div class="row y-middle">
-                        <div class="col-lg-9 col-md-12 md-mb-30">
-                            <div class="content-part">
-                                <div class="sec-title">
-                                    <div class="title-icon md-mb-15">
-                                        <img src="https://myjavalearningcenter.com/public/assets/images/newsletter.png" alt="images">
-                                    </div>
-                                    <h2 class="title mb-0 white-color">Learn Real-World Programming from the Industry's Best.</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <a class="readon orange-btn main-home" href="https://myjavalearningcenter.com/book-free-demo">Book Free Demo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>            <!-- Newsletter section end -->
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function (){
+          let totalStars = 5;
+          for($i=0;$i<totalStars;$i++) {
+              $('.star-rating-system').append(`<span class="fa fa-star" data-star="${$i+1}"></span>`);
+          }
+
+          let ratings = $('.ratings');
+          let rated = parseInt(ratings.attr('data-rated'));
+          for($i=0;$i<totalStars;$i++) {
+              if($i<rated){
+                  ratings.prepend('<span class="fa fa-star checked"></span>');
+              }else {
+                  ratings.append('<span class="fa fa-star"></span>');
+              }
+          }
+
+          $('.fa-star').click(function(e){
+              let position = parseInt(e.target.getAttribute('data-star'));
+              console.log(position)
+              let value =  parseInt($('#post-stars').val());
+              if(e.target.classList.contains('checked')){
+                  for($i=position+1;$i<=totalStars;$i++) {
+                      $(`.fa-star[data-star=${$i}]`).removeClass('checked');
+                  }
+                  // e.target.classList.remove('checked')
+                  $('#post-stars').val(position);
+              } else {
+                  for($i=0;$i<=position;$i++) {
+                    $(`.fa-star[data-star=${$i}]`).addClass('checked');
+                  }
+                  $('#post-stars').val(position);
+              }
+
+          })
+
+            $('.post-positive-review-feedback').click(function (){
+                let course = parseInt($(this).attr('data-course'));
+                let review = parseInt($(this).attr('data-review'));
+                axios.post(`/courses/${course}/review/${review}/feedback`,{type: 'positive'})
+                    .then(response => {
+                        console.log(response.data);
+                    })
+
+            })
+
+        })
+    </script>
+@endpush

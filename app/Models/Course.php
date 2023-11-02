@@ -67,4 +67,15 @@ class Course extends Model
     {
         return $this->hasMany(Faq::class);
     }
+
+
+    public function activeFaqs()
+    {
+        return $this->hasMany(Faq::class)->where('active',1);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

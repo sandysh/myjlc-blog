@@ -21,50 +21,49 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('categories.index') }}">
-                    <i class="fas fa-fw fa-th-list"></i>
+                    <i class="fas fa-list"></i>
                     <span>Categories</span></a>
-            </li>
             </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('posts.index') }}">
-                    <i class="fas fa-fw fa-th"></i>
+                    <i class="fas fa-blog"></i>
                     <span>Blog</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('courses.index') }}">
-                    <i class="fas fa-fw fa-th"></i>
+                    <i class="fas fa-sticky-note"></i>
                     <span>Courses</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('notices.index') }}">
-                    <i class="fas fa-fw fa-th"></i>
+                    <i class="fas fa-edit"></i>
                     <span>Notices</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('banners.index') }}">
-                    <i class="fas fa-fw fa-th"></i>
+                    <i class="fas fa-flag"></i>
                     <span>Banners</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('banners.index') }}">
-                    <i class="fas fa-fw fa-th"></i>
+                <a class="nav-link" href="{{ route('clients.index') }}">
+                    <i class="fas fa-users"></i>
                     <span>Clients</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('banners.index') }}">
-                    <i class="fas fa-fw fa-th"></i>
+                <a class="nav-link" href="{{ route('testimonials.index') }}">
+                    <i class="fas fa-quote-left"></i>
                     <span>Testimonials</span></a>
             </li>
 
@@ -78,9 +77,15 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('settings.popular.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Popular Courses</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('settings.popular.index') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>General</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->

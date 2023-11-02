@@ -1,3 +1,47 @@
+<style>
+    .social {
+        padding: 8px;
+        font-size: 30px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .fa:hover {
+        opacity: 0.7;
+    }
+    .fa-facebook {
+        background: #3B5998;
+        color: white;
+        padding: 8px 13px 8px 13px;;
+    }
+
+    .fa-twitter {
+        background: #55ACEE;
+        color: white;
+    }
+
+    .fa-linkedin {
+        background: #007bb5;
+        color: white;
+    }
+
+    .fa-youtube {
+        background: #bb0000;
+        color: white;
+    }
+
+    .fa-instagram {
+        background: #125688;
+        color: white;
+    }
+
+    .fa-reddit {
+        background: #ff5700;
+        color: white;
+    }
+
+</style>
+<div class="rs-newsletter style1 orange-color mb--90 sm-mb-0 sm-pb-70"><div class="container"><div class="newsletter-wrap"><div class="row y-middle"><div class="col-lg-9 col-md-12 md-mb-30"><div class="content-part"><div class="sec-title"><div class="title-icon md-mb-15"><img src="/images/newsletter.png" alt="images"></div><h2 class="title mb-0 white-color">Learn Real-World Programming from the Industry's Best.</h2></div></div></div><div class="col-lg-3 col-md-12"><a class="readon orange-btn main-home" href="https://myjavalearningcenter.com/book-free-demo">Book Free Demo</a></div></div></div></div></div>
 <footer id="rs-footer" class="rs-footer home9-style main-home">
     <div class="footer-top">
         <div class="container" id="about">
@@ -7,30 +51,17 @@
                         <a href="https://myjavalearningcenter.com/"><img src="/images/jlc-logo-2.png" alt=""></a>
                     </div>
                       <div class="textwidget white-color pr-60 md-pr-15">
-                        <p>Welcome to My Java Learning Center, </p> 
+                        <p>Welcome to My Java Learning Center, </p>
                         <p> Our Mission</p>
                         <p> Our mission is simple: To provide Industry-Focused training to students and working professionals.</p>
                       </div>
-                      <ul class="footer_social">  
-                          <li> 
-                              <a href="https://www.facebook.com/MyJavaLearningCenter" target="_blank"><span><i class="fa fa-facebook"></i></span></a> 
-                          </li>
-                           <li> 
-                              <a href="https://www.instagram.com/myjavalearningcenter" target="_blank"><span><i class="fa fa-instagram"></i></span></a> 
-                          </li>
+                      <ul class="footer_social">
+                          <a target="_blank" href="https://www.facebook.com/MyJavaLearningCenter" class="social fa fa-facebook"></a>
+                          <a target="_blank" href="https://www.instagram.com/myjavalearningcenter" class="social fa fa-instagram"></a>
+                          <a target="_blank" href="https://twitter.com/MyJavaLearning" class="social fa fa-twitter"></a>
+                          <a target="_blank" href="https://www.linkedin.com/in/myjavalearningcenter" class="social fa fa-linkedin"></a>
+                          <a target="_blank" href="https://www.youtube.com/@MyJavaLearningCenter" class="social fa fa-youtube"></a>
 
-                          <li> 
-                              <a href="https://twitter.com/MyJavaLearning" target="_blank"><span><i class="fa fa-twitter"></i></span></a> 
-                          </li>
-
-                          <li> 
-                              <a href="https://www.linkedin.com/in/myjavalearningcenter" target="_blank"><span><i class="fa fa-linkedin"></i></span></a> 
-                          </li>
-                          <li> 
-                              <a href="https://www.youtube.com/@MyJavaLearningCenter" target="_blank"><span><i class="fa fa-youtube"></i></span></a> 
-                          </li>
-                      
-                                                                   
                       </ul>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 footer-widget md-mb-50">
@@ -63,31 +94,25 @@
                 <div class="col-lg-3 col-md-12 col-sm-12 pl-50 md-pl-15 footer-widget md-mb-50">
                     <h3 class="widget-title">Courses</h3>
                     <ul class="site-map">
-                        <li><a href="https://myjavalearningcenter.com/courses/java-developer-course">Java Developer Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/java-full-stack-developer-course">Java Full Stack Developer Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/dsa-course">DSA Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/core-java-course">Core Java Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/web-development-course">Web Develpment Course</a> </li>
-                         
+                        @foreach($topCourses as $top)
+                            <li><a href="{{ route('courses.show',[$top->slug]) }}">{{ $top->title }}</a> </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-12 col-sm-12 footer-widget">
-                     <h3 class="widget-title">Courses</h3>
+                     <h3 class="widget-title">Useful Links</h3>
                     <ul class="site-map">
-                      
-                         <li><a href="https://myjavalearningcenter.com/courses/aws-course">AWS Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/devops-course">DevOps Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/kubernetes-course">Kubernetes Course</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/docker-course">Docker Course</a> </li>
-
+                         <li><a href="https://myjavalearningcenter.com/courses/aws-course">Privacy Policy</a> </li>
+                         <li><a href="https://myjavalearningcenter.com/courses/devops-course">Terms & Conditions</a> </li>
+                         <li><a href="https://myjavalearningcenter.com/courses/kubernetes-course">Refund Policy</a> </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        <div class="container">                    
+        <div class="container">
             <div class="row y-middle">
                 <div class="col-lg-12 md-mb-20">
                     <div class="copyright">

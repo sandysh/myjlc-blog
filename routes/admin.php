@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\SettingsController;
 
 Route::get('dashboard', function () {
     return view('admin.index');
@@ -42,3 +43,6 @@ Route::resource('banners',BannerController::class);
 Route::resource('clients',\App\Http\Controllers\Admin\ClientController::class);
 
 Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+
+Route::get('settings/popular',[SettingsController::class,'popularIndex'])->name('settings.popular.index');
+Route::post('settings/popular',[SettingsController::class,'popularStore'])->name('settings.popular.store');

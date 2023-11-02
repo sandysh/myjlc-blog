@@ -7981,7 +7981,7 @@ ul {
 }
 .cource-review-box .rating .fa {
   position: relative;
-  color: #bd1717;
+  /*color: #bd1717;*/
   margin: 0px 2px;
   font-size: 16px;
 }
