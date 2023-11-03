@@ -25,7 +25,7 @@
                 <tbody>
                 @foreach ($clients as $index => $client)
                     <tr>
-                        <th scope="row">{{ $index + 1 }}</th>
+                        <th scope="row">{{ $clients->firstItem() + $index }}</th>
                         <td>{{ $client->name }}</td>
                         <td><img style="width: 2em" src="{{asset('storage/'.$client->image)}}" alt=""></td>
                         <td>
