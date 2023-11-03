@@ -35,7 +35,7 @@ class CourseController extends Controller
             ->whereActive(1)
             ->select('*')
             ->selectRaw('LEFT(`overview`, 10) as `overview`')
-            ->paginate(1);
+            ->paginate();
         return $this->respondWithSuccess($posts);
     }
 
