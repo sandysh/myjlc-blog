@@ -14,7 +14,9 @@ class SettingsController extends Controller
     {
         $courses = Course::with('category')->whereActive(1)->get();
         $popular = Setting::where('key','popular')->first();
-        $popular =  json_decode($popular->value);
+        if ($popular) {
+            $popular =  json_decode($popular->value);
+        }
         return view('admin.settings.popular',compact('courses','popular'));
     }
 
