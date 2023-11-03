@@ -61,7 +61,7 @@
                     <div class="col-lg-2">
                       <div class="logo-cat-wrap">
                           <div class="logo-part">
-                              <a href="https://myjavalearningcenter.com/">
+                              <a href="{{ route('home') }}">
                                   <img src="/images/jlc-logo-1.png" alt="">
                               </a>
                           </div>

@@ -25,7 +25,7 @@ class BannerController extends Controller
     {
         $extension = $request->file('banner_image')->getClientOriginalExtension();
         $name = Str::slug($request->title,'-').'.'.$extension;
-        $path = Storage::putFileAs('public/banners', $request->banner_image, $name);
+        $path = Storage::putFileAs('banners', $request->banner_image, $name);
         $request['image'] = $path;
         isset($request->active) && $request->active === 'on' ? $request['active'] = 1 : $request['active'] = 0;
         Banner::create($request->all());
