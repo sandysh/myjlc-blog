@@ -26,7 +26,7 @@
                 <tbody>
                 @foreach ($testimonials as $index => $testimonial)
                     <tr>
-                        <th scope="row">{{ $index + 1 }}</th>
+                        <th scope="row">{{ $testimonial->firstItem() + $index }}</th>
                         <td>{{ $testimonial->name }}</td>
                         <td>{{ $testimonial->designation }}</td>
                         <td><img style="width: 2em" src="{{asset('storage/'.$testimonial->company_image)}}" alt=""></td>
