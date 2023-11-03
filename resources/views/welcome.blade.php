@@ -195,7 +195,7 @@
             </div>
             @if(count($clients) > 0)
             <div class="container">
-                    @foreach(collect($clients)->chunk(7) as $client)
+                    @foreach(collect($clients)->chunk(6) as $client)
                     <div class="row" style="margin-bottom: 3em">
                         @foreach($client as $cl)
                             <div class="col-2 client-img">
