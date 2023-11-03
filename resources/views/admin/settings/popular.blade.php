@@ -21,7 +21,7 @@
                                 class=""
                                 id="popular"
                                 aria-describedby="popular"
-                                {{ in_array($course->id,$popular) ? 'checked' : '' }}
+                                {{ $popular ? in_array($course->id,$popular) ? 'checked' : '' : '' }}
                             >
                             <label for="popular" class="form-label">{{ $course->title }} ({{$course->category->name}})</label>
                         </div>
