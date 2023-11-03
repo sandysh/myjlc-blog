@@ -198,7 +198,7 @@
                     @foreach(collect($clients)->chunk(7) as $client)
                     <div class="row" style="margin-bottom: 3em">
                         @foreach($client as $cl)
-                            <div class="col client-img">
+                            <div class="col-2 client-img">
                                 <img src="{{ asset('storage/'.$cl->image) }}" alt="">
                             </div>
                         @endforeach
