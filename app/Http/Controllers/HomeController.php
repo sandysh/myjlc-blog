@@ -34,7 +34,9 @@ class HomeController extends Controller
         $clients = Client::whereActive(1)->get();
         $testimonials = Testimonial::whereActive(1)->get();
         $popularArray = Setting::where('key','popular')->first();
-        $popularArray =  json_decode($popularArray->value);
+        if ($popularArray) {
+            $popularArray =  json_decode($popularArray->value);
+        }
         $popularCourses = Course::with('category')->whereIn('id',collect($popularArray)->toArray())
             ->select('*')
             ->selectRaw('LEFT(`overview`, 100) as `overview`')
