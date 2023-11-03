@@ -103,9 +103,9 @@
                 <div class="col-lg-3 col-md-12 col-sm-12 footer-widget">
                      <h3 class="widget-title">Useful Links</h3>
                     <ul class="site-map">
-                         <li><a href="https://myjavalearningcenter.com/courses/aws-course">Privacy Policy</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/devops-course">Terms & Conditions</a> </li>
-                         <li><a href="https://myjavalearningcenter.com/courses/kubernetes-course">Refund Policy</a> </li>
+                         <li><a href="{{route('privacy.policy')}}">Privacy Policy</a> </li>
+                         <li><a href="{{ route('terms.conditions') }}">Terms & Conditions</a> </li>
+                         <li><a href="{{route('refund.policy')}}">Refund Policy</a> </li>
                     </ul>
                 </div>
             </div>

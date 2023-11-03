@@ -34,3 +34,12 @@ Route::post('courses/filter',[\App\Http\Controllers\CourseController::class,'fil
 Route::post('courses/{course}/review',[\App\Http\Controllers\CourseController::class,'postReview'])->name('courses.review.post');
 Route::post('courses/{course}/review/{review}/feedback',[\App\Http\Controllers\CourseController::class,'postReviewFeedback'])->name('courses.review.post.feedback');
 Route::post('post/query',[\App\Http\Controllers\CourseController::class,'query'])->name('post.query');
+Route::get('privacy-policy', function (){
+   return view('privacy-policy');
+})->name('privacy.policy');
+Route::get('terms-and-conditions', function (){
+   return view('terms-and-conditions');
+})->name('terms.conditions');
+Route::get('refund-policy', function (){
+   return view('refund-policy');
+})->name('refund.policy');
