@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@push('styles')
+    <style>
+        .client-img img {
+            height: 3em;
+        }
+    </style>
+@endpush
 @section('content')
 <div class="main-content">
     <!-- Banner Section Start -->
@@ -192,7 +198,7 @@
                     @foreach(collect($clients)->chunk(7) as $client)
                     <div class="row" style="margin-bottom: 3em">
                         @foreach($client as $cl)
-                            <div class="col">
+                            <div class="col client-img">
                                 <img src="{{ asset('storage/'.$cl->image) }}" alt="">
                             </div>
                         @endforeach
