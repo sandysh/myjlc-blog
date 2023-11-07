@@ -41,7 +41,7 @@
                       <i class="fas fa-edit fa-sm"></i>
                   </a>
                   <button data-id="{{ $post->id }}" class="btn btn-danger btn-sm delete-category">
-                      <i class="fas fa-trash"></i>
+                      <i data-id="{{ $post->id }}" class="fas fa-trash"></i>
                   </button>
               </td>
             </tr>

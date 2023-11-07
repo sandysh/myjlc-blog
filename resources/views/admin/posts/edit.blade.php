@@ -108,6 +108,15 @@
     <script src="{{ asset('/js/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
     <script>
+        $(function(){
+            var img = $('#feat_image');
+            img.on('change',function(event){
+                var output = document.getElementById('img-preview');
+                output.src = URL.createObjectURL(event.target.files[0]);
+            });
+        })
+    </script>
+    <script>
         var citynames = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -131,13 +140,6 @@
             }
         });
 
-        $(function(){
-            var img = $('#feat_image');
-            img.on('change',function(event){
-                var output = document.getElementById('img-preview');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            });
-        })
     </script>
     <script>
         let editor;
