@@ -80,8 +80,10 @@ class TestimonialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Testimonial $testimonial)
     {
-        //
+        Storage::disk('public')->delete($testimonial->company_image);
+        $testimonial->delete();
+        return redirect()->back()->with('success','Testimonial Deleted');
     }
 }
