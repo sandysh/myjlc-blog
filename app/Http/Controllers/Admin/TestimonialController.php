@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class TestimonialController extends Controller
 {
@@ -48,17 +50,31 @@ class TestimonialController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Testimonial $testimonial)
     {
-        //
+        return view('admin.testimonials.edit',compact('testimonial'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Testimonial $testimonial, Request $request)
     {
-        //
+        if ($request->has('comp_image')) {
+            Storage::disk('public')->delete($testimonial->company_image);
+            $name = Str::slug($request->name,'-');
+            $extension = $request->file('comp_image')->getClientOriginalExtension();
+            $fileName = $name.'.'.$extension;
+            $path = Storage::disk('public')->putFileAs('testimonials/',$request->file('comp_image'), $fileName);
+            $request['image'] = $path;
+        }
+
+        isset($request->active) && $request->active === 'on'
+            ? $request['active'] = 1
+            : $request['active'] = 0;
+
+        $testimonial->update($request->all());
+        return redirect()->route('testimonials.index')->with('success','Testimonial updated !!!');
     }
 
     /**

@@ -26,7 +26,7 @@
                 <tbody>
                 @foreach ($testimonials as $index => $testimonial)
                     <tr>
-                        <th scope="row">{{ $testimonial->firstItem() + $index }}</th>
+                        <th scope="row">{{ $testimonials->firstItem() + $index }}</th>
                         <td>{{ $testimonial->name }}</td>
                         <td>{{ $testimonial->designation }}</td>
                         <td><img style="width: 2em" src="{{asset('storage/'.$testimonial->company_image)}}" alt=""></td>
@@ -38,7 +38,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('banners.edit',[$testimonial->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{ route('testimonials.edit',[$testimonial->id]) }}" class="btn btn-info btn-sm">Edit</a>
                             <button data-id="{{ $testimonial->id }}" class="btn btn-danger btn-sm delete-category">Delete</button>
                         </td>
                     </tr>
@@ -75,7 +75,7 @@
 @push('scripts')
     <script>
         $(function(){
-            url = 'banners/';
+            url = 'testimonials/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
             $('.delete-category').click(function(event){
                 var id = event.target.getAttribute('data-id');
