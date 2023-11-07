@@ -36,7 +36,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('banners.edit',[$client->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{ route('clients.edit',[$client->id]) }}" class="btn btn-info btn-sm">Edit</a>
                             <button data-id="{{ $client->id }}" class="btn btn-danger btn-sm delete-category">Delete</button>
                         </td>
                     </tr>
@@ -73,7 +73,7 @@
 @push('scripts')
     <script>
         $(function(){
-            url = 'banners/';
+            url = 'clients/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
             $('.delete-category').click(function(event){
                 var id = event.target.getAttribute('data-id');

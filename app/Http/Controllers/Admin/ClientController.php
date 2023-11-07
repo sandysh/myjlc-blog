@@ -56,24 +56,38 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $client)
     {
-        //
+        return view('admin.clients.edit',compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Client $client, Request $request)
     {
-        //
+        if ($request->has('client_image')) {
+            Storage::disk('public')->delete($client->image);
+            $name = Str::slug($request->name,'-');
+            $extension = $request->file('client_image')->getClientOriginalExtension();
+            $fileName = $name.'.'.$extension;
+            $path = Storage::disk('public')->putFileAs('clients/',$request->file('client_image'), $fileName);
+            $request['image'] = "clients/$fileName";
+        }
+        isset($request->active) && $request->active === 'on'
+            ? $request['active'] = 1
+            : $request['active'] = 0;
+        $client->update($request->all());
+        return redirect()->route('clients.index')->with('success','Client updated !!!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Client $client)
     {
-        //
+        Storage::disk('public')->delete($client->image);
+        $client->delete();
+        return redirect()->back()->with('success','Client Deleted');
     }
 }
