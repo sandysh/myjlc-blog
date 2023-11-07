@@ -9,6 +9,6 @@ class FooterComposer
 {
     public function compose(View $view): void
     {
-        $view->with('topCourses', Course::whereActive(1)->latest()->take(5)->get(['title','slug']));
+        $view->with('topCourses', Course::whereActive(1)->latest()->take(14)->get(['title','slug']));
     }
 }
