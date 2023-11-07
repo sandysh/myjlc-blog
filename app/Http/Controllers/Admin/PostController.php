@@ -16,7 +16,7 @@ use Spatie\Tags\Tag;
 class PostController extends Controller
 {
     use ApiResponseHelpers;
-    
+
     public function index()
     {
         $posts = Post::with('category')
@@ -60,9 +60,6 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $post->load('tags');
-        $collection = collect($post->tags);
-        $post->tagString = $collection->implode('name',', ');
         $categories = Category::whereActive(1)->get();
         return view('admin.posts.edit',compact('post','categories'));
     }

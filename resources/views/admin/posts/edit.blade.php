@@ -31,29 +31,32 @@
 @endpush
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Add New Post</h1>
+        <h1 class="h3 mb-0 text-gray-800">Update Post</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">New</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Update</h6>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('posts.update',$post->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="mb-3">
                     <label for="category_id">Category</label>
                     <select name="category_id" class="form-select form-control" aria-label="Default select example">
                         <option selected disabled>Select a category</option>
                         @foreach ($categories as $category )
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option {{ $post->category_id === $category->id ? 'selected' : '' }}
+                                    value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input name="title" type="text" class="form-control" id="title" aria-describedby="name">
+                    <input name="title" type="text" class="form-control" id="title" aria-describedby="name"
+                    value="{{$post->title}}">
                     @error('title')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -61,7 +64,7 @@
 
                 <div class=" ">
                     <label for="body" class="form-label">Body</label>
-                    <textarea id="editor" name="body"></textarea>
+                    <textarea id="editor" name="body">{{$post->body}}</textarea>
                     @error('body')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -69,12 +72,16 @@
 
                 <div class="mt-3">
                     <label for="tags" class="form-label">Tags</label>
-                    <input name="tags" id="tags" type="text" value="" data-role="tagsinput" />
+                    <input name="tags" id="tags" type="text" data-role="tagsinput"
+                           value="{{ implode(',',$post->tags->pluck('name')->toArray()) }}"
+                    />
                 </div>
 
                 <div class="mt-3">
                     <label for="readingTime" class="form-label">Reading Time</label>
-                    <input name="reading_time" type="text" class="form-control" id="title" aria-describedby="reading_time" value="">
+                    <input name="reading_time" type="text" class="form-control" id="title"
+                           value="{{$post->reading_time}}"
+                           aria-describedby="reading_time" value="">
                     @error('title')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -83,6 +90,7 @@
                 <div class="m-3">
                     <label for="body" class="form-label">Featured_image</label><br>
                     <input type="file" name="feat_image">
+                    <img style="width: 5em;" class="mt-4" style="width: 40em;" id="img-preview" src="{{ asset('storage/'.$post->featured_image) }}" alt="">
                 </div>
 
                 <div class="m-3 form-check">
@@ -122,6 +130,14 @@
                 source: citynames.ttAdapter()
             }
         });
+
+        $(function(){
+            var img = $('#feat_image');
+            img.on('change',function(event){
+                var output = document.getElementById('img-preview');
+                output.src = URL.createObjectURL(event.target.files[0]);
+            });
+        })
     </script>
     <script>
         let editor;
