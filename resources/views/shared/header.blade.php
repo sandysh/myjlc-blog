@@ -21,10 +21,10 @@
                                     <i class="flaticon-call"></i>
                                     <a href="tel:+91-7090366699">+91-70903 66699</a>
                                 </span>
-                                <span>
-                                    <i class="flaticon-call"></i>
-                                    <a href="tel:+91-7090466699">+91-70904 66699</a>
-                                </span>
+{{--                                <span>--}}
+{{--                                    <i class="flaticon-call"></i>--}}
+{{--                                    <a href="tel:+91-7090466699">+91-70904 66699</a>--}}
+{{--                                </span>--}}
 
                             </li>
                             @auth

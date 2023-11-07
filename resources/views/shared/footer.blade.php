@@ -77,12 +77,12 @@
                                <a href="tel:+91-7090366699">+91-70903 66699</a>
                             </div>
                         </li>
-                        <li>
-                            <i class="flaticon-call"></i>
-                            <div class="desc">
-                               <a href="tel:+91-7090466699">+91-70904 66699</a>
-                            </div>
-                        </li>
+{{--                        <li>--}}
+{{--                            <i class="flaticon-call"></i>--}}
+{{--                            <div class="desc">--}}
+{{--                               <a href="tel:+91-7090466699">+91-70904 66699</a>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
                         <li>
                             <i class="flaticon-email"></i>
                             <div class="desc">
