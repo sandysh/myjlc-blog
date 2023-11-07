@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->string('body');
+            $table->longText('body');
             $table->timestamps();
         });
     }

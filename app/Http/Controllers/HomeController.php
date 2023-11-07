@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $notices = Notice::whereActive(1)->latest()->limit(5)->get();
+        $notices = Notice::whereActive(1)->latest()->limit(14)->get();
         $banner = Banner::whereActive(1)->first();
         $clients = Client::whereActive(1)->get();
         $testimonials = Testimonial::whereActive(1)->get();
