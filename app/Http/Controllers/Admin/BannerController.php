@@ -42,7 +42,7 @@ class BannerController extends Controller
         if ($request->banner_image) {
             $extension = $request->file('banner_image')->getClientOriginalExtension();
             $name = Str::slug($request->title,'-').'.'.$extension;
-            $path = Storage::putFileAs('public/banners', $request->banner_image, $name);
+            $path = Storage::disk('public')->putFileAs('banners', $request->banner_image, $name);
             $request['image'] = $path;
         }
         if (isset($request->active) && $request->active === 'on') {
