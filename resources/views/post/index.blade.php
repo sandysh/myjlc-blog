@@ -5,12 +5,12 @@
                 <img src="/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
             </div>
             <div class="breadcrumbs-text white-color">
-                <h1 class="page-title">Course List</h1>
+                <h1 class="page-title">Blogs</h1>
                 <ul>
                     <li>
-                        <a class="active" href="https://myjavalearningcenter.com/">Home</a>
+                        <a class="active" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li>Courses</li>
+                    <li>Blogs</li>
                 </ul>
             </div>
         </div>
