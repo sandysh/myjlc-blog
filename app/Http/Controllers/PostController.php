@@ -26,6 +26,7 @@ class PostController extends Controller
                     ->select('*')
                     ->withCount('comments as comments_count')
                     ->selectRaw('LEFT(`body`, 100) as `body`')
+                    ->latest()
                     ->paginate();
         return $this->respondWithSuccess($posts);
     }
