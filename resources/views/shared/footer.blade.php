@@ -91,32 +91,38 @@
                         </li>
                     </ul>
                 </div>
+                @foreach(array_chunk($topCourses->toArray(),7) as $topCourse)
                 <div class="col-lg-3 col-md-12 col-sm-12 pl-50 md-pl-15 footer-widget md-mb-50">
                     <h3 class="widget-title">Courses</h3>
                     <ul class="site-map">
-                        @foreach($topCourses as $top)
-                            <li><a href="{{ route('courses.show',[$top->slug]) }}">{{ $top->title }}</a> </li>
-                        @endforeach
+                            @foreach($topCourse as $top)
+                                <li><a href="{{ route('courses.show',[$top['slug']]) }}">{{ $top['title'] }}</a> </li>
+                            @endforeach
                     </ul>
                 </div>
+                @endforeach
 
-                <div class="col-lg-3 col-md-12 col-sm-12 footer-widget">
-                     <h3 class="widget-title">Useful Links</h3>
-                    <ul class="site-map">
-                         <li><a href="{{route('privacy.policy')}}">Privacy Policy</a> </li>
-                         <li><a href="{{ route('terms.conditions') }}">Terms & Conditions</a> </li>
-                         <li><a href="{{route('refund.policy')}}">Refund Policy</a> </li>
-                    </ul>
-                </div>
+{{--                <div class="col-lg-3 col-md-12 col-sm-12 footer-widget">--}}
+{{--                     <h3 class="widget-title">Useful Links</h3>--}}
+{{--                    <ul class="site-map">--}}
+{{--                         <li><a href="{{route('privacy.policy')}}">Privacy Policy</a> </li>--}}
+{{--                         <li><a href="{{ route('terms.conditions') }}">Terms & Conditions</a> </li>--}}
+{{--                         <li><a href="{{route('refund.policy')}}">Refund Policy</a> </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
     <div class="footer-bottom">
         <div class="container">
             <div class="row y-middle">
-                <div class="col-lg-12 md-mb-20">
+                <div class="col-md-12 col-lg-12 md-mb-20">
                     <div class="copyright">
-                        <p>&copy; 2023 All Rights Reserved By <a href="https://myjavalearningcenter.com/">My Java Learning Center</a></p>
+                        <p>&copy; 2023 All Rights Reserved By <a href="{{ route('home') }}">My Java Learning Center</a>
+                            <a class="ml-8 text-muted" href="{{route('privacy.policy')}}"> |  Privacy Policy |</a>
+                            <a class="ml-8 text-muted" href="{{ route('terms.conditions') }}">Terms & Conditions |</a>
+                            <a class="ml-8 text-muted" href="{{route('refund.policy')}}">Refund Policy</a>
+                        </p>
                     </div>
                 </div>
             </div>
