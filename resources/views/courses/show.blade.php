@@ -161,31 +161,45 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    @if(!in_array(auth()->id(),($course->reviews->pluck('id')->toArray())))
+                                    @auth
+                                        @if(!in_array(auth()->id(),($course->reviews->pluck('id')->toArray())))
+                                            <div class="ontent white-bg mt-30">
+                                                <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Leave A Review</h4>
+                                                    <form action="{{ route('courses.review.post',$course->id) }}" method="POST">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-lg-6 mb-35 col-md-12 star-rating-system"></div>
+                                                            <div class="col-lg-6 mb-35 col-md-12">
+                                                                <input type="hidden" id="post-stars" name="stars" value="0">
+                                                            </div>
+                                                            <div class="col-lg-12 mb-50">
+                                                            <textarea rows="10" class="form-control"
+                                                                      id="description" name="description"
+                                                                      placeholder="Your review here"
+                                                                      required=""></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group mb-0">
+                                                            <button type="submit" class="btn-part btn readon2 orange-transparent"> Comment
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endauth
+                                    @guest
+                                        @php
+                                            session()->put('url.intended', url()->current())
+                                        @endphp
                                         <div class="ontent white-bg mt-30">
-                                            <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Leave A Review</h4>
-                                                <form action="{{ route('courses.review.post',$course->id) }}" method="POST">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-lg-6 mb-35 col-md-12 star-rating-system"></div>
-                                                        <div class="col-lg-6 mb-35 col-md-12">
-                                                            <input type="hidden" id="post-stars" name="stars" value="0">
-                                                        </div>
-                                                        <div class="col-lg-12 mb-50">
-                                                        <textarea rows="10" class="form-control"
-                                                                  id="description" name="description"
-                                                                  placeholder="Your review here"
-                                                                  required=""></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group mb-0">
-                                                        <button type="submit" class="btn-part btn readon2 orange-transparent"> Comment
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                            <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Login to write a review</h4>
+                                                <div class="form-group mb-0">
+                                                    <a href="{{ route('login') }}" class="btn readon2 orange-transparent" type="submit" value="Login Now">Login Now</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endif
+                                    @endguest
                                 </div>
                             </div>
                         </div>

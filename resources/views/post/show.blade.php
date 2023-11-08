@@ -93,8 +93,21 @@
                                 </div>
 
                                 <!-- Reviews -->
+                                @auth
                                 <comment-component :auth = "{{auth()->user()}}" :post="{{ $post }}"></comment-component>
-
+                                @endauth
+                                @guest
+                                    @php
+                                        session()->put('url.intended', url()->current())
+                                    @endphp
+                                    <div class="ontent white-bg mt-30">
+                                        <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Login to post a comment</h4>
+                                            <div class="form-group mb-0">
+                                                <a href="{{ route('login') }}" class="btn readon2 orange-transparent" type="submit" value="Login Now">Login Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endguest
                             </div>
                         </div>
                     </div>

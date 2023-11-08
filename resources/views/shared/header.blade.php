@@ -36,6 +36,9 @@
                                         </button>
                                     </form>
                                 </li>
+                                <li><a target="_blank" href="{{ route('dashboard') }}">
+                                        <i class="fa fa-dashboard"></i>
+                                        Dashboard</a></li>
                             @else
                                 <li class="login-register">
                                     <i class="fa fa-sign-in"></i>

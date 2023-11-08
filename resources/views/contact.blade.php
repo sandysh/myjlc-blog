@@ -44,7 +44,7 @@
                             <span class="des"><a href="mailto:hello@myjavalearningcenter.com"> hello@myjavalearningcenter.com </a></span>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-lg-4 col-md-12 lg-pl-0 sm-mb-30">
                     <div class="address-item">
                         <div class="icon-part">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-                    
+
             <div class="row">
                 <div class="col-lg-5 md-mb-30">
                     <div class="contact-map2">
@@ -72,17 +72,17 @@
                             <p>Send Your Query here and we will be happy to Serve you !!!</p>
                         </div>
                         <div id="form-messages"></div>
-                        <form id="contact-form" method="post" action="/book-demo">
+                        <form id="contact-form" method="post" action="{{ route('post.query') }}">
                             <div class="row">
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="name" name="name" placeholder="Name" required="">
-                                </div> 
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="email" name="email" placeholder="Email" required="">
-                                </div>   
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="phone" name="phone" placeholder="Phone" required="">
-                                </div>   
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <select class="from-control form-select" id="course" name="course" data-placeholder="Query" required="">
                                         <option></option>
@@ -93,20 +93,20 @@
                                         <option>I have general query</option>
                                     </select>
                                 </div>
-                                     
+
                                 <div class="col-lg-12 mb-50">
                                     <textarea class="from-control" id="message" name="message" placeholder=" Message" required=""></textarea>
                                 </div>
                             </div>
                             <div class="form-group mb-0">
                                 <input class="btn-send" type="submit" value="Submit Now">
-                            </div>       
+                            </div>
                         </form>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
     <!-- Contact Section End -->
-</div> 
+</div>
 @endsection

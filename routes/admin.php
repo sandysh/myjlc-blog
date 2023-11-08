@@ -12,8 +12,10 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SettingsController;
 
+Route::get('/',function (){
+    return "test";
+});
 Route::get('/dashboard',[\App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
-Route::redirect('/','dashboard');
 //Route::get('dashboard', function () {
 //    return view('admin.index');
 //})->name('dashboard');
