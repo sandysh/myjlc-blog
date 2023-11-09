@@ -119,6 +119,14 @@
                 </div>
 
                 <div class="mt-3">
+                    <label for="keywords" class="form-label">Page Title</label>
+                    <input name="page_title" type="text" class="form-control" id="page_title">
+                    @error('page_title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
                     <label for="keywords" class="form-label">Keywords</label>
                     <textarea class="form-control" name="keywords" id="" cols="10" rows="2"></textarea>
                     @error('title')

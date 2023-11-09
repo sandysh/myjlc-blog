@@ -87,13 +87,8 @@
                                          <a href="#about">About</a>
                                      </li> -->
 
-                                     <li class="menu-item-has-children">
+                                     <li>
                                          <a href="{{ route('web.courses.index') }}">Courses</a>
-                                         <ul class="sub-menu">
-                                             @foreach($courses as $course)
-                                                 <li><a href="{{ route('courses.show',[$course->slug]) }}">{{ $course->title }}</a> </li>
-                                             @endforeach
-                                         </ul>
                                      </li>
 
                                      <li>

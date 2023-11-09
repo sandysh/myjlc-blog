@@ -14,7 +14,7 @@ class Course extends Model
     use HasFactory, HasTags;
 
     protected $fillable = ['user_id','category_id','title','slug','overview','hours','price','gst','students','class_type',
-        'placements', 'featured_image','active','keywords','description'];
+        'placements', 'featured_image','active','keywords','description','page_title'];
 
 //    protected $casts = [
 //        'gst' => 'boolean',

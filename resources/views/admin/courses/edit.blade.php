@@ -134,6 +134,15 @@
                 </div>
 
                 <div class="mt-3">
+                    <label for="keywords" class="form-label">Page Title</label>
+                    <input name="page_title" type="text" class="form-control" id="page_title"
+                           value="{{$course->page_title}}">
+                    @error('page_title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
                     <label for="keywords" class="form-label">Keywords</label>
                     <textarea class="form-control" name="keywords" id="" cols="10" rows="2">{{$course->keywords}}</textarea>
                     @error('title')
@@ -162,7 +171,7 @@
                         {{ $course->active === 1 ? 'checked' : '' }}>
                     <label class="form-check-label" for="exampleCheck1">Active</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>

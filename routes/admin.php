@@ -50,3 +50,5 @@ Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialControlle
 
 Route::get('settings/popular',[SettingsController::class,'popularIndex'])->name('settings.popular.index');
 Route::post('settings/popular',[SettingsController::class,'popularStore'])->name('settings.popular.store');
+
+Route::resource('reviews',\App\Http\Controllers\Admin\ReviewController::class);

@@ -10,7 +10,7 @@
     </style>
 @endpush
 @php
-    $title = $course->title;
+    $title = $course->page_title;
     $description = $course->description;
     $keywords = $course->keywords;
 @endphp
@@ -140,71 +140,20 @@
                                             <h4>Reviews</h4>
                                             @foreach($course->reviews as $review)
                                                 <div class="cource-review-box mb-30">
-                                                    <h3>{{ $review->user->name }}</h3>
+                                                    <h3>{{ $review->name }}</h3>
+                                                    <p>{{$review->company}} | {{$review->designation}}</p>
                                                     <div class="rating star-ratings">
-                                                        <span class="ratings" data-rated="{{$review->stars}}">
-
-                                                        </span>
+                                                        @php
+                                                            for($i=0; $i<$review->rating; $i++){
+                                                                echo '<span class="fa fa-star checked"></span>';
+                                                            }
+                                                        @endphp
                                                     </div>
                                                     <div class="text"> {{ $review->description }} </div>
-{{--                                                    <div class="helpful">Was this review helpful?</div>--}}
-{{--                                                    <ul class="like-option">--}}
-{{--                                                        <li class="post-positive-review-feedback"--}}
-{{--                                                            data-course="{{$course->id}}"--}}
-{{--                                                            data-review="{{$review->id}}">--}}
-{{--                                                            <i class="fa fa-thumbs-o-up"></i>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li class="post-negative-review-feedback"--}}
-{{--                                                            data-course="{{$course->id}}"--}}
-{{--                                                            data-review="{{$review->id}}"--}}
-{{--                                                        >--}}
-{{--                                                            <i class="fa fa-thumbs-o-down"></i>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a class="report" href="#">Report</a></li>--}}
-{{--                                                    </ul>--}}
                                                 </div>
                                             @endforeach
                                         </div>
                                     </div>
-                                    @auth
-                                        @if(!in_array(auth()->id(),($course->reviews->pluck('id')->toArray())))
-                                            <div class="ontent white-bg mt-30">
-                                                <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Leave A Review</h4>
-                                                    <form action="{{ route('courses.review.post',$course->id) }}" method="POST">
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-lg-6 mb-35 col-md-12 star-rating-system"></div>
-                                                            <div class="col-lg-6 mb-35 col-md-12">
-                                                                <input type="hidden" id="post-stars" name="stars" value="0">
-                                                            </div>
-                                                            <div class="col-lg-12 mb-50">
-                                                            <textarea rows="10" class="form-control"
-                                                                      id="description" name="description"
-                                                                      placeholder="Your review here"
-                                                                      required=""></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group mb-0">
-                                                            <button type="submit" class="btn-part btn readon2 orange-transparent"> Comment
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endauth
-                                    @guest
-                                        @php
-                                            session()->put('url.intended', url()->current())
-                                        @endphp
-                                        <div class="ontent white-bg mt-30">
-                                            <div class="inner-box pt-30 pb-30 pl-30 pr-30 white-bg"><h4>Login to write a review</h4>
-                                                <div class="form-group mb-0">
-                                                    <a href="{{ route('login') }}" class="btn readon2 orange-transparent" type="submit" value="Login Now">Login Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endguest
                                 </div>
                             </div>
                         </div>
@@ -252,35 +201,6 @@
                                 </ul>
                             </div>
 
-{{--                            <div class="notice-bord style1">--}}
-{{--                                <h4 class="title">Notice Board</h4>--}}
-{{--                                <ul>--}}
-{{--                                    <li class="wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 300ms; animation-name: none;">--}}
-{{--                                        <div class="date"><span>2</span>Oct</div>--}}
-{{--                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 400ms; animation-name: none;">--}}
-{{--                                        <div class="date"><span>3</span>Oct</div>--}}
-{{--                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 500ms; animation-name: none;">--}}
-{{--                                        <div class="date"><span>4</span>Oct</div>--}}
-{{--                                        <div class="desc">Attend Free Master Class on Java <br> Timings : 11:30 AM to 1.30 P.M </div>--}}
-{{--                                    </li>--}}
-
-{{--                                    <li class="wow fadeInUp" data-wow-delay="600ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 600ms; animation-name: none;">--}}
-{{--                                        <div class="date"><span>2</span>Oct</div>--}}
-{{--                                        <div class="desc">Array Programs <br> Timings : 10:00 AM to 11.00 A.M </div>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="wow fadeInUp" data-wow-delay="700ms" data-wow-duration="2000ms" style="visibility: hidden; animation-duration: 2000ms; animation-delay: 700ms; animation-name: none;">--}}
-{{--                                        <div class="date"><span>3</span>Oct</div>--}}
-{{--                                        <div class="desc">Array Programs <br> Timings : 10:00 AM to 11.00 A.M </div>--}}
-{{--                                    </li>--}}
-
-
-{{--                                </ul>--}}
-{{--                            </div>--}}
-
                             <div class="btn-part">
                                 <div class="rs-quick-contact new-style">
                                     <div class="inner-part mb-50">
@@ -323,54 +243,3 @@
         <!-- End intro Courses -->
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        $(function (){
-          let totalStars = 5;
-          for($i=0;$i<totalStars;$i++) {
-              $('.star-rating-system').append(`<span class="fa fa-star" data-star="${$i+1}"></span>`);
-          }
-
-          let ratings = $('.ratings');
-          let rated = parseInt(ratings.attr('data-rated'));
-          for($i=0;$i<totalStars;$i++) {
-              if($i<rated){
-                  ratings.prepend('<span class="fa fa-star checked"></span>');
-              }else {
-                  ratings.append('<span class="fa fa-star"></span>');
-              }
-          }
-
-          $('.fa-star').click(function(e){
-              let position = parseInt(e.target.getAttribute('data-star'));
-              console.log(position)
-              let value =  parseInt($('#post-stars').val());
-              if(e.target.classList.contains('checked')){
-                  for($i=position+1;$i<=totalStars;$i++) {
-                      $(`.fa-star[data-star=${$i}]`).removeClass('checked');
-                  }
-                  // e.target.classList.remove('checked')
-                  $('#post-stars').val(position);
-              } else {
-                  for($i=0;$i<=position;$i++) {
-                    $(`.fa-star[data-star=${$i}]`).addClass('checked');
-                  }
-                  $('#post-stars').val(position);
-              }
-
-          })
-
-            $('.post-positive-review-feedback').click(function (){
-                let course = parseInt($(this).attr('data-course'));
-                let review = parseInt($(this).attr('data-review'));
-                axios.post(`/courses/${course}/review/${review}/feedback`,{type: 'positive'})
-                    .then(response => {
-                        console.log(response.data);
-                    })
-
-            })
-
-        })
-    </script>
-@endpush

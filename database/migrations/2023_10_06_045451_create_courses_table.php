@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('class_type');
             $table->boolean('placements');
             $table->string('featured_image');
+            $table->string('page_title');
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

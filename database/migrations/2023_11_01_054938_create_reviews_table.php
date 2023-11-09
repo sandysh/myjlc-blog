@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class);
             $table->foreignIdFor(\App\Models\Course::class);
-            $table->float('stars');
+            $table->string('name');
+            $table->string('designation');
+            $table->string('company');
+            $table->float('rating');
             $table->longText('description');
-            $table->bigInteger('like')->default(0);
-            $table->bigInteger('dislike')->default(0);
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
