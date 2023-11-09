@@ -21,6 +21,9 @@
 @endpush
 @php
     $post->update(['hits' => $post->hits + 1]);
+    $title = $post->title;
+    $description = $post->description;
+    $keywords = $post->keywords;
 @endphp
 @section('content')
     <div class="rs-breadcrumbs breadcrumbs-overlay">

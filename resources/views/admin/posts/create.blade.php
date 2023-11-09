@@ -37,11 +37,11 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">New</h6>
-    </div>  
+    </div>
     <div class="card-body">
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">    
+            <div class="mb-3">
                 <label for="category_id">Category</label>
                 <select name="category_id" class="form-select form-control" aria-label="Default select example">
                     <option selected disabled>Select a category</option>
@@ -80,11 +80,27 @@
                 @enderror
             </div>
 
+            <div class="mt-3">
+                <label for="keywords" class="form-label">Keywords</label>
+                <textarea class="form-control" name="keywords" id="" cols="10" rows="2"></textarea>
+                @error('title')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
+                @error('title')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="m-3">
                 <label for="body" class="form-label">Featured_image</label><br>
                 <input type="file" name="feat_image">
             </div>
-            
+
             <div class="m-3 form-check">
                 <input name="active" type="checkbox" class="form-check-input" id="exampleCheck1" checked>
                 <label class="form-check-label" for="exampleCheck1">Active</label>

@@ -11,7 +11,10 @@ class Post extends Model
 {
     use HasFactory, HasTags;
 
-    protected $fillable = ['user_id','category_id','title','slug','body','featured_image','active','hits','reading_time','shared'];
+    protected $fillable = [
+        'user_id','category_id','title','slug','body','featured_image','active','hits','reading_time','shared',
+        'keywords','description'
+    ];
 
     public static function getLocale()
     {

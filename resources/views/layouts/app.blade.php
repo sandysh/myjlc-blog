@@ -4,8 +4,9 @@
 <head>
     <!-- meta tag -->
     <meta charset="utf-8">
-    <title>My Java Learning Center - Courses</title>
-    <meta name="description" content="">
+    <title>{{ $title ?? 'My Java Learning Center - Courses'}}</title>
+    <meta name="description" content="{{ $description ?? 'Some description here'}}">
+    <meta name="keywords" content="{{ $keywords ?? 'myjlc,java,learning,center,india,banglore,top,institute'}}">
     <!-- responsive tag -->
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

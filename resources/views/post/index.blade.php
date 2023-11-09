@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="rs-breadcrumbs breadcrumbs-overlay">
             <div class="breadcrumbs-img">

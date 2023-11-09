@@ -9,6 +9,11 @@
         }
     </style>
 @endpush
+@php
+    $title = $course->title;
+    $description = $course->description;
+    $keywords = $course->keywords;
+@endphp
 @section('content')
     <div class="main-content">
         <!-- Breadcrumbs Start -->

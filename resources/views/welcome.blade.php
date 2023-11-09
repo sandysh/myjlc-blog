@@ -35,43 +35,6 @@
     <!-- Banner Section End -->
 
     <!-- About Section Start -->
-    <div id="rs-about" class="rs-about style1 pb-100 md-pb-70">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 order-last">
-                    <div class="notice-bord style1">
-                        <h4 class="title">Notice Board</h4>
-                        <ul>
-                            @foreach($notices as $notice)
-                                <li class="wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">
-                                    <div class="date"><span>
-                                            {{ explode(',',\Carbon\Carbon::parse($notice->date)->toFormattedDateString())[0] }}</span></div>
-                                    <div class="desc">{{ $notice->title }} <br/> Timings : {{ $notice->from }} to
-                                    {{ $notice->to }}</div>
-                                </li>
-                            @endforeach
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-8 pr-50 md-pr-15">
-                    <div class="about-part">
-                        <div class="sec-title">
-                            <div class="sub-title primary wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms">About Us</div>
-                           <!-- <h2 class="title wow fadeInUp" data-wow-delay="400ms" data-wow-duration="2000ms">World Best Virtual Learning Network Educavo eLearning</h2> -->
-                            <div class="desc wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms"> In today's rapidly evolving world of technology, staying ahead of the curve is not just an advantage – it's a necessity. Welcome to My Java Learning Center, where we are dedicated to equipping students and working professionals with the skills and knowledge needed to excel in the ever-changing realm of software development.
-                            <br><br>We offer courses in Java, Data Structures and Algorithms, Design Patterns and other latest technologies such as Cloud Computing, DevOps for students who want to learn new technologies or working professionals who want to upgrade their technology skills. Our courses are designed and delivered via Instructor-Led live online classes to help you upgrade your skills and choose the right career in technology.
-                            <!--
-                            <br><br><b>Our Mission</b>
-                            <br><br>Our mission is simple: To provide Industry-Focused training to students and working professionals
-                            -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- About Section End -->
 
     <!-- Popular Courses Section Start -->

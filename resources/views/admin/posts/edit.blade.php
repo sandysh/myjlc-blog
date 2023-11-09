@@ -87,6 +87,22 @@
                     @enderror
                 </div>
 
+                <div class="mt-3">
+                    <label for="keywords" class="form-label">Keywords</label>
+                    <textarea class="form-control" name="keywords" id="" cols="10" rows="2">{{$post->keywords}}</textarea>
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="" cols="30" rows="5">{{$post->description}}</textarea>
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="m-3">
                     <label for="body" class="form-label">Featured_image</label><br>
                     <input type="file" name="feat_image">

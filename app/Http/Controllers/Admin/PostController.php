@@ -73,6 +73,7 @@ class PostController extends Controller
             $request['featured_image'] = $path;
         }
         $request->active ? $request['active'] = 1 : $request['active'] = 0;
+        $request['slug'] = Str::slug($request->title,'-');
         $post->update($request->all());
         $post->syncTags(explode(',',$request->tags));
         return redirect()->route('posts.index')->with('success','Post updated successfully');

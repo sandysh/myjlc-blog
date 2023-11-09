@@ -114,8 +114,14 @@
 
                 <div class="mt-3">
                     <label for="class_type" class="form-label">Class Type</label>
-                    <input name="class_type" type="text" class="form-control" id="class_type"
-                           aria-describedby="class_type" value="{{ $course->class_type }}">
+                    <select class="form-control" name="class_type" id="">
+                        <option {{ $course->class_type === 'Online live training' ? 'selected' : '' }}
+                                value="Online live training">Online live training</option>
+                        <option {{ $course->class_type === 'Blended Learning' ? 'selected' : '' }}
+                                 value="Blended Learning">Blended Learning</option>
+                        <option {{ $course->class_type === 'Self-Paced Learning' ? 'selected' : '' }}
+                            value="Self-Paced Learning">Self-Paced Learning</option>
+                    </select>
                     @error('class_type')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -125,6 +131,22 @@
                     <input name="placements" type="checkbox" class="form-check-input" id="exampleCheck1"
                         {{ $course->placements === 1 ? 'checked' : '' }}>
                     <label class="form-check-label" for="exampleCheck1">Placements</label>
+                </div>
+
+                <div class="mt-3">
+                    <label for="keywords" class="form-label">Keywords</label>
+                    <textarea class="form-control" name="keywords" id="" cols="10" rows="2">{{$course->keywords}}</textarea>
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="" cols="30" rows="5">{{$course->description}}</textarea>
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="m-3">

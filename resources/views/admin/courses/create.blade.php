@@ -103,7 +103,11 @@
 
                 <div class="mt-3">
                     <label for="class_type" class="form-label">Class Type</label>
-                    <input name="class_type" type="text" class="form-control" id="class_type" aria-describedby="class_type" value="">
+                    <select class="form-control" name="class_type" id="">
+                        <option value="Online live training">Online live training</option>
+                        <option value="Blended Learning">Blended Learning</option>
+                        <option value="Self-Paced Learning">Self-Paced Learning</option>
+                    </select>
                     @error('class_type')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -112,6 +116,22 @@
                 <div class="mt-3 form-check">
                     <input name="placements" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Placements</label>
+                </div>
+
+                <div class="mt-3">
+                    <label for="keywords" class="form-label">Keywords</label>
+                    <textarea class="form-control" name="keywords" id="" cols="10" rows="2"></textarea>
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="m-3">
