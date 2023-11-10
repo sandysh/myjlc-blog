@@ -110,6 +110,13 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    @can('view roles')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('roles.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Roles</span></a>
+    </li>
+    @endcan
     @can('view settings')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('settings.popular.index') }}">
