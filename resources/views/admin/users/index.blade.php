@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Posts</h1>
-        @can('create blog posts')
-            <a href="{{ route('posts.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-download fa-sm text-white-50"></i> Add New Post</a>
+        <h1 class="h3 mb-0 text-gray-800">Users</h1>
+        @can('add users')
+        <a href="{{ route('users.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Add New User</a>
         @endcan
     </div>
     @include('admin.shared.alert')
@@ -14,61 +14,60 @@
             <h6 class="m-0 font-weight-bold text-primary">List</h6>
         </div>
         <div class="card-body">
-
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Active</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($posts  as $post )
+                @foreach ($users as $index => $user)
                     <tr>
-                        <th scope="row"></th>
+                        <th scope="row">{{ $users->firstItem() + $index }}</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->address }}</td>
+                        <td>{{ $user->roles[0]->name }}</td>
                         <td>
-                            <a href="{{ route('post.show',[$post->slug]) }}">{{$post->title }}</a>
+                            @if($user->active)
+                                <i class="fas fa-check-circle text-success fa-fw"></i>
+                            @else
+                                <i class="fas fa-times-circle text-danger"></i>
+                            @endif
                         </td>
-                        <td>{{ $post->category->name }}</td>
-                        <td><img src="{{ '/storage/'.$post->featured_image }}" style="width: 4rem"/></td>
                         <td>
-                            {{ $post->active ? 'active' : 'disabled' }}
-                        </td>
-                        <td>
-                            @can('edit blog posts')
-                            <a href="{{ route('posts.edit',[$post->id]) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-edit fa-sm"></i>
-                            </a>
+                            @can('edit users')
+                            <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-info btn-sm">Edit</a>
                             @endcan
-                            @can('delete blog posts')
-                            <button data-id="{{ $post->id }}" class="btn btn-danger btn-sm delete-category">
-                                <i data-id="{{ $post->id }}" class="fas fa-trash"></i>
-                            </button>
+                            @can('delete users')
+                            <button data-id="{{ $user->id }}" class="btn btn-danger btn-sm delete-category">Delete</button>
                             @endcan
-
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
+
             </table>
-
-            {{ $posts->links() }}
-
+            {{ $users->links() }}
         </div>
-        @can('delete blog posts')
+        @can('delete users')
         <div class="modal" id="delete-modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete Post ?</h5>
+                        <h5 class="modal-title">Delete User ?</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure, you want to delete this post.</p>
+                        <p>Are you sure, you want to delete this user ?.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-close">Close</button>
@@ -86,17 +85,18 @@
 @endsection
 
 @push('scripts')
-    @can('delete blog posts')
+    @can('delete users')
     <script>
-        $(function () {
-            var url = 'posts/';
+        $(function(){
+            url = 'users/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
-            $('.delete-category').click(function (event) {
+            $('.delete-category').click(function(event){
                 var id = event.target.getAttribute('data-id');
                 myModal.show();
-                $('#delete').attr('action', url + id)
+                $('#delete').attr('action',url+id)
+                console.log(url+id)
             })
-            $('.btn-close').click(function () {
+            $('.btn-close').click(function(){
                 myModal.hide();
             })
         })

@@ -3,8 +3,10 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Clients</h1>
-        <a href="{{ route('clients.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Add New Clients</a>
+        @can('add clients')
+            <a href="{{ route('clients.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i> Add New Clients</a>
+        @endcan
     </div>
     @include('admin.shared.alert')
     <div class="card shadow mb-4">
@@ -36,8 +38,14 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('clients.edit',[$client->id]) }}" class="btn btn-info btn-sm">Edit</a>
-                            <button data-id="{{ $client->id }}" class="btn btn-danger btn-sm delete-category">Delete</button>
+                            @can('edit clients')
+                                <a href="{{ route('clients.edit',[$client->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                            @endcan
+                            @can('delete clients')
+                                <button data-id="{{ $client->id }}" class="btn btn-danger btn-sm delete-category">
+                                    Delete
+                                </button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
@@ -46,6 +54,7 @@
             </table>
             {{ $clients->links() }}
         </div>
+        @can('delete clients')
         <div class="modal" id="delete-modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -67,23 +76,26 @@
                 </div>
             </div>
         </div>
+        @endcan
     </div>
 @endsection
 
 @push('scripts')
+    @can('delete clients')
     <script>
-        $(function(){
+        $(function () {
             url = 'clients/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
-            $('.delete-category').click(function(event){
+            $('.delete-category').click(function (event) {
                 var id = event.target.getAttribute('data-id');
                 myModal.show();
-                $('#delete').attr('action',url+id)
-                console.log(url+id)
+                $('#delete').attr('action', url + id)
+                console.log(url + id)
             })
-            $('.btn-close').click(function(){
+            $('.btn-close').click(function () {
                 myModal.hide();
             })
         })
     </script>
+    @endcan
 @endpush

@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Testimonials</h1>
-        @can('add testimonials')
-        <a href="{{ route('testimonials.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Add New Testimonial</a>
+        <h1 class="h3 mb-0 text-gray-800">Roles</h1>
+        @can('add roles')
+        <a href="{{ route('roles.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Add New Role</a>
         @endcan
     </div>
     @include('admin.shared.alert')
@@ -18,35 +18,24 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th width="20%" scope="col">Name</th>
-                    <th width="20%" scope="col">Designation</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">Active</th>
+                    <th width="30%" scope="col">Name</th>
+                    <th width="30%" scope="col">Total Users</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($testimonials as $index => $testimonial)
+                @foreach ($roles as $index => $role)
                     <tr>
-                        <th scope="row">{{ $testimonials->firstItem() + $index }}</th>
-                        <td>{{ $testimonial->name }}</td>
-                        <td>{{ $testimonial->designation }}</td>
-                        <td><img style="width: 2em" src="{{asset('storage/'.$testimonial->company_image)}}" alt=""></td>
+                        <th scope="row">{{ $roles->firstItem() + $index }}</th>
+                        <td>{{ $role->name }}</td>
+                        <td>{{ $role->users_count }}</td>
                         <td>
-                            @if($testimonial->active)
-                                <i class="fas fa-check-circle text-success fa-fw"></i>
-                            @else
-                                <i class="fas fa-times-circle text-danger"></i>
-                            @endif
-                        </td>
-                        <td>
-                            @can('edit testimonials')
-                                <a href="{{ route('testimonials.edit',[$testimonial->id]) }}"
-                                   class="btn btn-info btn-sm">Edit</a>
+                            @can('edit roles')
+                                <a href="{{ route('roles.edit',[$role->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                                <a href="{{ route('roles.permissions.edit',[$role->id]) }}" class="btn btn-info btn-sm">Permissions</a>
                             @endcan
-                            @can('delete testimonials')
-                                <button data-id="{{ $testimonial->id }}" class="btn btn-danger btn-sm delete-category">
-                                    Delete
+                            @can('delete roles')
+                                <button data-id="{{ $role->id }}" class="btn btn-danger btn-sm delete-category">Delete
                                 </button>
                             @endcan
                         </td>
@@ -55,18 +44,18 @@
                 </tbody>
 
             </table>
-            {{ $testimonials->links() }}
+            {{ $roles->links() }}
         </div>
-        @can('delete testimonials')
+        @can('delete roles')
             <div class="modal" id="delete-modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Delete FAQ ?</h5>
+                            <h5 class="modal-title">Delete Role ?</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure, you want to delete this faq ?.</p>
+                            <p>Are you sure, you want to delete this role.</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-close">Close</button>
@@ -84,16 +73,15 @@
 @endsection
 
 @push('scripts')
-    @can('delete testimonials')
+    @can('delete roles')
         <script>
             $(function () {
-                url = 'testimonials/';
+                var url = 'roles/';
                 var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
                 $('.delete-category').click(function (event) {
                     var id = event.target.getAttribute('data-id');
                     myModal.show();
                     $('#delete').attr('action', url + id)
-                    console.log(url + id)
                 })
                 $('.btn-close').click(function () {
                     myModal.hide();

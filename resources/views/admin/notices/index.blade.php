@@ -3,8 +3,10 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Categories</h1>
-        <a href="{{ route('notices.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Add New Notice</a>
+        @can('create notices')
+            <a href="{{ route('notices.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i> Add New Notice</a>
+        @endcan
     </div>
     @include('admin.shared.alert')
     <div class="card shadow mb-4">
@@ -40,8 +42,14 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('notices.edit',[$notice->id]) }}" class="btn btn-info btn-sm">Edit</a>
-                            <button data-id="{{ $notice->id }}" class="btn btn-danger btn-sm delete-category">Delete</button>
+                            @can('edit notices')
+                                <a href="{{ route('notices.edit',[$notice->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                            @endcan
+                            @can('delete notices')
+                                <button data-id="{{ $notice->id }}" class="btn btn-danger btn-sm delete-category">
+                                    Delete
+                                </button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
@@ -50,6 +58,7 @@
             </table>
             {{ $notices->links() }}
         </div>
+        @can('delete notices')
         <div class="modal" id="delete-modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -71,22 +80,25 @@
                 </div>
             </div>
         </div>
+        @endcan
     </div>
 @endsection
 
 @push('scripts')
+    @can('delete notices')
     <script>
-        $(function(){
+        $(function () {
             var url = 'notices/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
-            $('.delete-category').click(function(event){
+            $('.delete-category').click(function (event) {
                 var id = event.target.getAttribute('data-id');
                 myModal.show();
-                $('#delete').attr('action',url+id)
+                $('#delete').attr('action', url + id)
             })
-            $('.btn-close').click(function(){
+            $('.btn-close').click(function () {
                 myModal.hide();
             })
         })
     </script>
+    @endcan
 @endpush

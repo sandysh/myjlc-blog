@@ -10,6 +10,16 @@ use Illuminate\Support\Str;
 
 class TestimonialController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view testimonials', ['only' => ['index']]);
+        $this->middleware('permission:add testimonials', ['only' => ['create']]);
+        $this->middleware('permission:add testimonials', ['only' => ['store']]);
+        $this->middleware('permission:edit testimonials', ['only' => ['edit']]);
+        $this->middleware('permission:update testimonials', ['only' => ['update']]);
+        $this->middleware('permission:delete testimonials', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

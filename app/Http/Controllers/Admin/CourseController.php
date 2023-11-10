@@ -12,6 +12,15 @@ use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view courses', ['only' => ['index']]);
+        $this->middleware('permission:add courses', ['only' => ['create']]);
+        $this->middleware('permission:add courses', ['only' => ['store']]);
+        $this->middleware('permission:edit courses', ['only' => ['edit']]);
+        $this->middleware('permission:update courses', ['only' => ['update']]);
+        $this->middleware('permission:delete courses', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $courses = Course::with('creator','category')->paginate();

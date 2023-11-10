@@ -4,8 +4,10 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Courses</h1>
-        <a href="{{ route('courses.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Add New Course</a>
+        @can('add courses')
+            <a href="{{ route('courses.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i> Add New Course</a>
+        @endcan
     </div>
     @include('admin.shared.alert')
     <div class="card shadow mb-4">
@@ -38,18 +40,25 @@
                             {{ $course->active ? 'active' : 'disabled' }}
                         </td>
                         <td>
-                            <a href="{{ route('courses.edit',[$course->id]) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-edit fa-sm"></i>
-                            </a>
-                            <button data-id="{{ $course->id }}" class="btn btn-danger btn-sm delete-category">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <a href="{{ route('courses.curriculum.create',$course->id) }}" data-id="{{ $course->id }}" class="btn btn-success btn-sm">
-                                <i class="fas fa-file"></i>
-                            </a>
-                            <a href="{{ route('courses.faqs.index',$course->id) }}" class="btn btn-success btn-sm">
-                                <i class="fas fa-question"></i>
-                            </a>
+                            @can('edit courses')
+                                <a href="{{ route('courses.edit',[$course->id]) }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-edit fa-sm"></i>
+                                </a>
+                            @endcan
+                            @can('delete courses')
+                                <button data-id="{{ $course->id }}" class="btn btn-danger btn-sm delete-category">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            @endcan
+                            @can('edit courses')
+                                <a href="{{ route('courses.curriculum.create',$course->id) }}"
+                                   data-id="{{ $course->id }}" class="btn btn-success btn-sm">
+                                    <i class="fas fa-file"></i>
+                                </a>
+                                <a href="{{ route('courses.faqs.index',$course->id) }}" class="btn btn-success btn-sm">
+                                    <i class="fas fa-question"></i>
+                                </a>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
@@ -59,6 +68,7 @@
             {{ $courses->links() }}
 
         </div>
+        @can('delete courses')
         <div class="modal" id="delete-modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -80,23 +90,25 @@
                 </div>
             </div>
         </div>
+        @endcan
     </div>
 @endsection
 
 @push('scripts')
+    @can('delete courses')
     <script>
-        $(function(){
+        $(function () {
             var url = 'posts/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
-            $('.delete-category').click(function(event){
+            $('.delete-category').click(function (event) {
                 var id = event.target.getAttribute('data-id');
                 myModal.show();
-                $('#delete').attr('action',url+id)
+                $('#delete').attr('action', url + id)
             })
-            $('.btn-close').click(function(){
+            $('.btn-close').click(function () {
                 myModal.hide();
             })
         })
     </script>
-
+    @endcan
 @endpush

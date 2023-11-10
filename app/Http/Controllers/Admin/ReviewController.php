@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view reviews', ['only' => ['index']]);
+        $this->middleware('permission:add reviews', ['only' => ['create']]);
+        $this->middleware('permission:add reviews', ['only' => ['store']]);
+        $this->middleware('permission:edit reviews', ['only' => ['edit']]);
+        $this->middleware('permission:update reviews', ['only' => ['update']]);
+        $this->middleware('permission:delete reviews', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $reviews = Review::whereActive(1)->paginate();

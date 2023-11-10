@@ -10,6 +10,16 @@ use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view banners', ['only' => ['index']]);
+        $this->middleware('permission:add banners', ['only' => ['create']]);
+        $this->middleware('permission:add banners', ['only' => ['store']]);
+        $this->middleware('permission:edit banners', ['only' => ['edit']]);
+        $this->middleware('permission:update banners', ['only' => ['update']]);
+        $this->middleware('permission:delete banners', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $banners = Banner::paginate();

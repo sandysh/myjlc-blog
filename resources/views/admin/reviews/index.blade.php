@@ -3,8 +3,10 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Reviews</h1>
+        @can('add reviews')
         <a href="{{ route('reviews.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i> Add New Review</a>
+        @endcan
     </div>
     @include('admin.shared.alert')
     <div class="card shadow mb-4">
@@ -42,8 +44,14 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('reviews.edit',[$review->id]) }}" class="btn btn-info btn-sm">Edit</a>
-                            <button data-id="{{ $review->id }}" class="btn btn-danger btn-sm delete-category">Delete</button>
+                            @can('edit reviews')
+                                <a href="{{ route('reviews.edit',[$review->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                            @endcan
+                            @can('delete reviews')
+                                <button data-id="{{ $review->id }}" class="btn btn-danger btn-sm delete-category">
+                                    Delete
+                                </button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
@@ -52,44 +60,48 @@
             </table>
             {{ $reviews->links() }}
         </div>
-        <div class="modal" id="delete-modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Delete Review ?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure, you want to delete this review ?.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-close">Close</button>
-                        <form id="delete" method="POST" action="">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-primary" value="submit">
-                        </form>
+        @can('delete reviews')
+            <div class="modal" id="delete-modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Review ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure, you want to delete this review ?.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-close">Close</button>
+                            <form id="delete" method="POST" action="">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" class="btn btn-primary" value="submit">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endcan
     </div>
 @endsection
 
 @push('scripts')
-    <script>
-        $(function(){
-            url = 'reviews/';
-            var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
-            $('.delete-category').click(function(event){
-                var id = event.target.getAttribute('data-id');
-                myModal.show();
-                $('#delete').attr('action',url+id)
-                console.log(url+id)
+    @can('delete reviews')
+        <script>
+            $(function () {
+                url = 'reviews/';
+                var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
+                $('.delete-category').click(function (event) {
+                    var id = event.target.getAttribute('data-id');
+                    myModal.show();
+                    $('#delete').attr('action', url + id)
+                    console.log(url + id)
+                })
+                $('.btn-close').click(function () {
+                    myModal.hide();
+                })
             })
-            $('.btn-close').click(function(){
-                myModal.hide();
-            })
-        })
-    </script>
+        </script>
+    @endcan
 @endpush

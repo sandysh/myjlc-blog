@@ -11,6 +11,16 @@ use Illuminate\Http\File;
 
 class ClientController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view clients', ['only' => ['index']]);
+        $this->middleware('permission:add clients', ['only' => ['create']]);
+        $this->middleware('permission:add clients', ['only' => ['store']]);
+        $this->middleware('permission:edit clients', ['only' => ['edit']]);
+        $this->middleware('permission:update clients', ['only' => ['update']]);
+        $this->middleware('permission:delete clients', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

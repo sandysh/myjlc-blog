@@ -17,6 +17,15 @@ class PostController extends Controller
 {
     use ApiResponseHelpers;
 
+    public function __construct()
+    {
+        $this->middleware('permission:view blog posts', ['only' => ['index']]);
+        $this->middleware('permission:add blog posts', ['only' => ['create']]);
+        $this->middleware('permission:add blog posts', ['only' => ['store']]);
+        $this->middleware('permission:edit blog posts', ['only' => ['edit']]);
+        $this->middleware('permission:update blog posts', ['only' => ['update']]);
+        $this->middleware('permission:delete blog posts', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $posts = Post::with('category')

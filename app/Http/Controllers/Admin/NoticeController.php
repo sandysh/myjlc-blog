@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class NoticeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view notices', ['only' => ['index']]);
+        $this->middleware('permission:add notices', ['only' => ['create']]);
+        $this->middleware('permission:add notices', ['only' => ['store']]);
+        $this->middleware('permission:edit notices', ['only' => ['edit']]);
+        $this->middleware('permission:update notices', ['only' => ['update']]);
+        $this->middleware('permission:delete notices', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $notices = Notice::latest()->paginate();

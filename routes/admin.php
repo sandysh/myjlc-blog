@@ -12,14 +12,9 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SettingsController;
 
-Route::get('/',function (){
-    return "test";
-});
 Route::get('/dashboard',[\App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
-//Route::get('dashboard', function () {
-//    return view('admin.index');
-//})->name('dashboard');
 
+Route::resource('users',\App\Http\Controllers\Admin\UserController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class)->only(['index', 'store', 'edit', 'update', 'destroy', 'create']);
 Route::get('posts/all', [PostController::class, 'all']);
@@ -39,8 +34,8 @@ Route::put('courses/{course}/faqs/{faq}/update', [FaqController::class, 'update'
 Route::delete('courses/{course}/faqs/{faq}', [FaqController::class, 'destroy'])->name('courses.faqs.delete');
 
 /* Notices */
-Route::resource('notices', NoticeController::class);
 
+Route::resource('notices', NoticeController::class);
 /*Banners*/
 Route::resource('banners',BannerController::class);
 
@@ -52,3 +47,9 @@ Route::get('settings/popular',[SettingsController::class,'popularIndex'])->name(
 Route::post('settings/popular',[SettingsController::class,'popularStore'])->name('settings.popular.store');
 
 Route::resource('reviews',\App\Http\Controllers\Admin\ReviewController::class);
+
+Route::resource('roles',\App\Http\Controllers\Admin\RoleController::class);
+Route::get('roles/{role}/edit/permissions',[\App\Http\Controllers\Admin\RoleController::class,'editPermissions'])
+    ->name('roles.permissions.edit');
+Route::post('roles/{role}/update/permissions',[\App\Http\Controllers\Admin\RoleController::class,'updatePermissions'])
+    ->name('roles.permissions.update');

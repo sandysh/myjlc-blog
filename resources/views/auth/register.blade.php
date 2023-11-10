@@ -36,6 +36,11 @@
                             <div class="form-group col-lg-12">
                                 <input type="number" id="phone" name="phone" value="" placeholder="Phone Number" required="">
                             </div>
+
+                            <!-- Form Group -->
+                            <div class="form-group col-lg-12">
+                                <input type="text" id="address" name="address" value="" placeholder="Address" required="">
+                            </div>
                             <!-- Form Group -->
                             <div class="form-group col-lg-12">
                                 <input type="text" id="password" name="password" value="" placeholder="Password" required="">

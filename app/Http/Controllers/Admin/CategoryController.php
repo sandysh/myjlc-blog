@@ -10,6 +10,15 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:view categories', ['only' => ['index']]);
+        $this->middleware('permission:add categories', ['only' => ['create']]);
+        $this->middleware('permission:add categories', ['only' => ['store']]);
+        $this->middleware('permission:edit categories', ['only' => ['edit']]);
+        $this->middleware('permission:update categories', ['only' => ['update']]);
+        $this->middleware('permission:delete categories', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         $categories = Category::with('parent')->paginate();
