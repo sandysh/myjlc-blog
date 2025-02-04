@@ -3,7 +3,7 @@
 /**
  * Admin related routes
  */
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FaqController;

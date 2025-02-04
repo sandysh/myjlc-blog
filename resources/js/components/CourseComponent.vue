@@ -16,7 +16,7 @@
                     >
                     <div class="courses-item mb-30">
                         <div class="img-part">
-                            <img src="https://myjavalearningcenter.com/public/assets/images/courses/1.jpg" alt="">
+                            <img class="course-icon" :src="course.featured_image" alt="hello">
                         </div>
                         <div class="content-part">
                             <ul class="meta-part">
@@ -173,5 +173,9 @@ ul {
 .rs-breadcrumbs .breadcrumbs-img img {
     width: 100%;
     max-height: 150px;
+}
+.course-icon{
+    aspect-ratio:2;
+    
 }
 </style>

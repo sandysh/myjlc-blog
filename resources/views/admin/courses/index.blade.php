@@ -98,7 +98,7 @@
     @can('delete courses')
     <script>
         $(function () {
-            var url = 'posts/';
+            var url = 'courses/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
             $('.delete-category').click(function (event) {
                 var id = event.target.getAttribute('data-id');

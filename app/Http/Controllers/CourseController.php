@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use F9Web\ApiResponseHelpers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -20,12 +21,13 @@ class CourseController extends Controller
         $categories = Category::withCount('courses')->has('courses','>',0)->whereActive(1)->get(['name','id','slug']);
         $courses = Course::with('category')->whereActive(1)->select('*')
             ->selectRaw('LEFT(`overview`, 10) as `overview`')->get();
+            
         return view('courses.index',compact('categories','courses'));
     }
 
     public function filter(Request $request)
     {
-        $posts = Course::with('category')
+        $courses = Course::with('category')
             ->when($request->tag, function(Builder $query) use ($request){
                 $query->withAllTags($request->tag);
             })
@@ -36,7 +38,13 @@ class CourseController extends Controller
             ->select('*')
             ->selectRaw('LEFT(`overview`, 10) as `overview`')
             ->paginate();
-        return $this->respondWithSuccess($posts);
+            
+            foreach ($courses as $course) {
+                if ($course->featured_image) {
+                    $course->featured_image = Storage::url($course->featured_image);
+                }
+            }
+        return $this->respondWithSuccess($courses);
     }
 
     public function show($course)

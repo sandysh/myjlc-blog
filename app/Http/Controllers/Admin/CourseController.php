@@ -9,6 +9,7 @@ use App\Models\Curriculum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Exception;
 
 class CourseController extends Controller
 {
@@ -35,9 +36,23 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        $course = Course::create($request->all());
-        $course->attachTags(explode(',',$request->tags));
-        return redirect()->route('courses.index')->with('success','Course created successfully !!!');
+        try
+        {
+            if($request->has('feat_image'))
+            {
+                $imageName = Str::slug($request->title,'-').'.'.$request->file('feat_image')->getClientOriginalExtension();
+                $path = Storage::disk('public')->putFileAs('courses/featured_images',$request->feat_image, $imageName);
+                $request['featured_image'] = $path;
+            }
+            $course = Course::create($request->all());
+            if(isset($request->tags)) $course->attachTags(explode(',',$request->tags));
+            return redirect()->route('courses.index')->with('success','Course created successfully !!!');
+        } 
+        catch(Exception $e)
+        {
+            return redirect()->route('courses.index')->with('success','Course creation Failed !!!');
+        }
+        
     }
 
     public function edit(Course $course)
@@ -47,11 +62,27 @@ class CourseController extends Controller
 
     public function update(Course $course, Request $request)
     {
+        if ($request->has('feat_image')) {
+            $imageName = Str::slug($request->title,'-').'.'.$request->file('feat_image')->getClientOriginalExtension();
+            Storage::disk('public')->delete($course->featured_image);
+            $path = Storage::disk('public')->putFileAs('posts/featured_images',$request->feat_image, $imageName);
+            $request['featured_image'] = $path;
+        }
         $course->update($request->all());
         if ($request->tags && !empty($request->tags)){
             $course->syncTags(explode(',',$request->tags));
         }
         return redirect()->route('courses.index')->with('success','Course updated successfully !!!');
+    }
+
+    public function destroy(Course $course)
+    {
+        if (Storage::disk('public')->exists($course->featured_image)) {
+            Storage::disk('public')->delete($course->featured_image);
+        }
+        $course->delete();
+        $course->curriculums()->delete();
+        return redirect()->route('courses.index')->with('success','Course deleted successfully');
     }
 
     public function createCurriculum(Course $course)
@@ -66,10 +97,18 @@ class CourseController extends Controller
         return redirect()->route('courses.curriculum.create',$course->id)->with('success','Curriculum created successfully !!!');
     }
 
+    public function deleteCurriculum(Course $course)
+    {
+        $course->curriculums()->delete();;
+        return redirect()->route('courses.curriculum.create',$course->id)->with('success','Curriculum created successfully !!!');
+    }
     public function editCurriculum(Course $course, Curriculum $curriculum)
     {
         return view('admin.curriculum.edit',compact('course','curriculum'));
     }
+
+    
+
     public function updateCurriculum(
         Course $course,
         Curriculum $curriculum,
