@@ -25,9 +25,12 @@ class Course extends Model
     protected static function booted()
     {
         static::creating(function ($course) {
-            $imageName = Str::slug($course->title,'-').'.'.request()->file('feat_image')->getClientOriginalExtension();
-            $path = Storage::disk('public')->putFileAs('courses', request()->feat_image,$imageName);
-            $course->featured_image = $path;
+            if(request()->has('feat_image')) 
+                {
+                $imageName = Str::slug($course->title,'-').'.'.request()->file('feat_image')->getClientOriginalExtension();
+                $path = Storage::disk('public')->putFileAs('courses', request()->feat_image,$imageName);
+                $course->featured_image = $path;
+            }
             $course->user_id = auth()->id();
             $course->slug = Str::slug($course->title,'-');
             $course->gst = request()->gst === 'on' ? 1 : 0;
@@ -45,6 +48,10 @@ class Course extends Model
             $course->gst = request()->gst === 'on' ? 1 : 0;
             $course->placements = request()->placements === 'on' ? 1 : 0;
             $course->active = request()->active === 'on' ? 1 : 0;
+        });
+
+        static::deleting(function($course){
+            $course->curriculums()->delete();
         });
     }
 

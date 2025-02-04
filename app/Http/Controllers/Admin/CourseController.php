@@ -38,12 +38,6 @@ class CourseController extends Controller
     {
         try
         {
-            if($request->has('feat_image'))
-            {
-                $imageName = Str::slug($request->title,'-').'.'.$request->file('feat_image')->getClientOriginalExtension();
-                $path = Storage::disk('public')->putFileAs('courses/featured_images',$request->feat_image, $imageName);
-                $request['featured_image'] = $path;
-            }
             $course = Course::create($request->all());
             if(isset($request->tags)) $course->attachTags(explode(',',$request->tags));
             return redirect()->route('courses.index')->with('success','Course created successfully !!!');
@@ -80,8 +74,9 @@ class CourseController extends Controller
         if (Storage::disk('public')->exists($course->featured_image)) {
             Storage::disk('public')->delete($course->featured_image);
         }
+        
         $course->delete();
-        $course->curriculums()->delete();
+        
         return redirect()->route('courses.index')->with('success','Course deleted successfully');
     }
 
