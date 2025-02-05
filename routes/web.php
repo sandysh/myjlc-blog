@@ -15,7 +15,7 @@ use App\Http\Controllers\CourseController;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::redirect('/home', '/');

@@ -2,6 +2,48 @@
 
 
 @section('content')
+<style>
+td{
+    text-align:center;
+}
+.custom-switch{
+    margin:0;
+    padding:0;
+}
+.custom-switch-input {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background-color: #ffffff; 
+  border-radius:10px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.custom-switch-input:checked {
+  background-color: #007bff;
+  
+}
+
+.custom-switch-input:checked::before {
+  transform: translateX(20px);
+}
+
+.custom-switch-input::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.2s;
+}
+
+
+</style>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Courses</h1>
         @can('add courses')
@@ -30,14 +72,24 @@
                 <tbody>
                 @foreach ($courses  as $course )
                     <tr>
-                        <th scope="row"></th>
+                        <td scope="row">{{$loop->index+1}}</td>
                         <td>
                             <a href="{{ route('courses.show',[$course->slug]) }}">{{$course->title }}</a>
                         </td>
-                        <td>{{ $course->category->name }}</td>
+                        <td >{{ $course->category->name }}</td>
                         <td>{{ $course->students }}</td>
+                        
                         <td>
-                            {{ $course->active ? 'active' : 'disabled' }}
+                            <div class="custom-switch">
+                                
+                                <input class="custom-switch-input status"  
+                                value="{{$course->active}}"
+                                 type="checkbox" 
+                                 data-id="{{$course->id}}"
+                                 {{ $course->active === 1 ? 'checked' : '' }}
+                                 />
+                               
+                            </div>
                         </td>
                         <td>
                             @can('edit courses')
@@ -98,6 +150,7 @@
     @can('delete courses')
     <script>
         $(function () {
+            console.log('{{ route('courses.update',$course->id) }}');
             var url = 'courses/';
             var myModal = new bootstrap.Modal(document.getElementById('delete-modal'))
             $('.delete-category').click(function (event) {
@@ -108,7 +161,33 @@
             $('.btn-close').click(function () {
                 myModal.hide();
             })
+            $('.status').click(function(event) {
+             var id = event.target.getAttribute('data-id');
+             var checked = parseInt(event.target.value);
+             console.log(checked);
+             var active=checked==1?'off':'on';
+            
+             console.log(url);
+             $.ajax({
+                url:'courses/'+id, 
+                method:'POST',
+                data: {
+                    '_token': '{{ csrf_token() }}',  
+                    '_method': 'PUT',
+                    'id': parseInt(id),  
+                    'active': active  
+                },
+                success: function(data) {
+                    console.log(data);  
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr, status, error);  
+                }
+            });
+        });
+
         })
+        
     </script>
     @endcan
 @endpush

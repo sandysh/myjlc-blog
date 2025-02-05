@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,600,700,800');
 
 @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900');
-@charset "utf-8";
+@charset "UTF-8";
 /**
 *
 * -----------------------------------------------------------------------------
@@ -9372,7 +9372,7 @@ ul {
 }
 .rs-testimonial.home-style1 .testi-item .author-desc {
   padding: 50px 15px 0px 15px;
-  background-color: #faeded
+  background-color: #faeded;
   border-radius: 5px 5px 5px 5px;
 }
 .rs-testimonial.home-style1 .testi-item .author-desc .desc {
@@ -15307,3 +15307,40 @@ select#course {
 div#form-messages.success {
     color: green;
 }
+
+.custom-switch {
+  display: flex;
+  align-items: center;
+}
+
+.custom-switch-input {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background-color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.custom-switch-input:checked {
+  background-color: #007bff;
+}
+
+.custom-switch-input:checked::before {
+  transform: translateX(20px);
+}
+
+.custom-switch-input::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.2s;
+}
+

@@ -63,6 +63,10 @@ class CourseController extends Controller
             $request['featured_image'] = $path;
         }
         $course->update($request->all());
+        // $course->active=$request->active;
+        // $course->save();
+        // return redirect()->route('courses.index')->with('success','Course Status updated successfully !!!');
+        
         if ($request->tags && !empty($request->tags)){
             $course->syncTags(explode(',',$request->tags));
         }

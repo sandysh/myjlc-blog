@@ -217,7 +217,7 @@
                                                 <input class="form-control" type="text" id="name" name="name" placeholder="Name" required="">
                                             </div>
                                             <div class="col-lg-12 mb-35 col-md-12">
-                                                <input class="form-control" type="text" id="email" name="email" placeholder="Email" required="">
+                                                <input class="form-control" type="email" id="email" name="email" placeholder="Email" required="">
                                             </div>
                                             <div class="col-lg-12 mb-35 col-md-12">
                                                 <input class="form-control" type="text" id="phone" name="phone" placeholder="Phone" required="">
