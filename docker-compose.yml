@@ -18,6 +18,11 @@ services:
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            MAIL_MAILER: '${MAIL_MAILER}'
+            MAIL_HOST: '${MAIL_HOST}'
+            MAIL_PORT: ${MAIL_PORT}'
+            MAIL_USERNAME: '${MAIL_USERNAME}'
+            MAIL_PASSWORD: '${MAIL_PASSWORD}'
         volumes:
             - '.:/var/www/html'
         networks:
@@ -25,6 +30,7 @@ services:
         depends_on:
             - mysql
             - redis
+           
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -89,4 +95,6 @@ volumes:
     sail-redis:
         driver: local
     sail-phpmyadmin:
+        driver: local
+    sail-mailpit:
         driver: local

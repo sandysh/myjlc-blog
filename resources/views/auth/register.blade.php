@@ -43,11 +43,11 @@
                             </div>
                             <!-- Form Group -->
                             <div class="form-group col-lg-12">
-                                <input type="text" id="password" name="password" value="" placeholder="Password" required="">
+                                <input type="password" id="password" name="password" value="" placeholder="Password" required="">
                             </div>
                             <!-- Form Group -->
                             <div class="form-group col-lg-12">
-                                <input type="text" id="password-confirmation" name="password_confirmation" value="" placeholder="Confirm Password" required="">
+                                <input type="password" id="password-confirmation" name="password_confirmation" value="" placeholder="Confirm Password" required="">
                             </div>
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <div class="row clearfix">

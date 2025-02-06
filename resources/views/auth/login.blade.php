@@ -12,6 +12,7 @@
             <div class="noticed">
                 <div class="main-part">
                     <div class="method-account">
+                        @include('shared.alert')
                         <h2 class="login">Login</h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

@@ -1,9 +1,17 @@
 <?php
 
+use App\Http\Controllers\Auth\VerificationController as AuthVerificationController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\VerificationController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+ 
+// use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +23,14 @@ use App\Http\Controllers\CourseController;
 |
 */
 
-Auth::routes(['verify' => true]);
+Auth::routes();
+Route::get('/email/verify', [AuthVerificationController::class,'show'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}',[AuthVerificationController::class,'verified'])->middleware(['auth','signed'])->name('verification.verify');
+
+// Route::post('/email/verification-notification', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
+//     return back()->with('message', 'Verification link sent!');
+// })->middleware(['throttle:6,1'])->name('verification.resend');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::redirect('/home', '/');
@@ -43,3 +58,7 @@ Route::get('terms-and-conditions', function (){
 Route::get('refund-policy', function (){
    return view('refund-policy');
 })->name('refund.policy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

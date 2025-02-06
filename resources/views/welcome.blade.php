@@ -7,6 +7,7 @@
     </style>
 @endpush
 @section('content')
+
 <div class="main-content">
     <!-- Banner Section Start -->
     @if($banner)

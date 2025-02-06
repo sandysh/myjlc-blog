@@ -12,6 +12,9 @@
                     <div class="col-md-9 text-end">
                         <ul class="topbar-contact">
                             <li>
+                                @include('shared.alert')
+                            </li>
+                            <li>
                                 <i class="flaticon-email"></i>
                                 <a href="mailto:hello@myjavalearningcenter.com">hello@myjavalearningcenter.com</a>
                             </li>
@@ -37,11 +40,11 @@
                                         </button>
                                     </form>
                                 </li>
-                            @if(strtolower(auth()->user()->roles[0]->name) !== 'user')
+                            {{-- @if(strtolower(auth()->user()->roles[0]->name) !== 'user') --}}
                                 <li><a target="_blank" href="{{ route('dashboard') }}">
                                         <i class="fa fa-dashboard"></i>
                                         Dashboard</a></li>
-                            @endif
+                            {{-- @endif --}}
                             @else
                                 <li class="login-register">
                                     <i class="fa fa-sign-in"></i>
